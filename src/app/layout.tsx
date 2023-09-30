@@ -6,9 +6,26 @@ import { Noto_Sans_KR } from 'next/font/google'
 import Image from 'next/image';
 import path from '@/values/asset/path';
 import profile from '#/profile/JYP.png'
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { collection, doc, getFirestore, setDoc } from "firebase/firestore";
+import HomeNav from '@/components/HomeNav';
 // import { pretendard } from "../../node_modules/pretendard/dist/web/static/woff.css";
 
 const noto = Noto_Sans_KR({ subsets: ['latin'] });
+
+const firebaseConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+};
+
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
 
 export const metadata: Metadata = {
   title: '코박죽 블로그',
@@ -23,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body style={noto.style} className='flex flex-row gap-0'>
-        <header className='flex flex-col w-[300px] h-full sticky items-center gap-8 bg-red-200'>
+        <header className='flex flex-col w-[250px] h-full sticky items-center gap-8 bg-red-200'>
           <Flex.Hstack className='w-full px-4 gap-4 mt-8'>
             <div className='aspect-square w-fit'>
               <Image
@@ -35,36 +52,17 @@ export default function RootLayout({
                 className='rounded-full'
               />
             </div>
-            <Flex.VCenter className='text-xs flex-1'>
-              <Flex.HBetween className='w-full'>
-                <span>{"이름"}</span>
-                <span>{"코박죽"}</span>
-              </Flex.HBetween>
-              <Flex.HBetween>
-                <span>{"거주지"}</span>
-                <span>{"수원시"}</span>
-              </Flex.HBetween>
-              <Flex.HBetween>
-                <span>{"직업"}</span>
-                <span>{"Frontend Dev(React)"}</span>
-              </Flex.HBetween>
-              <Flex.HBetween>
-                <span>{"직업관"}</span>
-                <span>{"코드에 머리박고 죽어버리자"}</span>
-              </Flex.HBetween>
+            <Flex.VCenter className='text-xs flex-1 items-end'>
+              <span>{"코드에 머리박고 죽을때까지"}</span>
+              <span>{"Frontend Developer"}</span>
+              <span>{"코박죽의 블로그입니다"}</span>
             </Flex.VCenter>
           </Flex.Hstack>
-          <nav className='flex flex-col w-full bg-red-200 mx-auto h-full items-center min-h-screen'>
-            <span className='w-fit'>dd</span>
-            <span className='w-fit'>dd</span>
-          </nav>
+          <HomeNav />
         </header>
-        <main className='w-full flex-1'>
+        <main className='w-full flex-1 pt-8'>
           {children}
         </main>
-        <nav className='w-[200px] bg-blue-200'>
-          {'스크롤 위치 섹션'}
-        </nav>
       </body>
     </html>
   )

@@ -40,7 +40,7 @@ const HCenter = ({ className, children, ...props }: FlexDivProps) => {
 
 const VCenter = ({ className, children, ...props }: FlexDivProps) => {
     const combination = twMerge(
-        "flex flex-col justify-center",
+        "flex flex-col items-center",
         className
     );
     return (
