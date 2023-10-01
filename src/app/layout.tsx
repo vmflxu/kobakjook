@@ -60,7 +60,7 @@ export default function RootLayout({
           </Flex.Hstack>
           <HomeNav />
         </header>
-        <main className='w-full flex-1 pt-8'>
+        <main className='w-full flex-1'>
           {children}
         </main>
       </body>
