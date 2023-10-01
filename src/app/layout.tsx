@@ -6,9 +6,9 @@ import { Noto_Sans_KR } from 'next/font/google'
 import Image from 'next/image';
 import path from '@/values/asset/path';
 import profile from '#/profile/JYP.png'
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { collection, doc, getFirestore, setDoc } from "firebase/firestore";
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+// import { collection, doc, getFirestore, setDoc } from "firebase/firestore";
 import HomeNav from '@/components/HomeNav';
 // import { pretendard } from "../../node_modules/pretendard/dist/web/static/woff.css";
 
@@ -24,8 +24,8 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+// const app = initializeApp(firebaseConfig);
+// export const db = getFirestore(app);
 
 export const metadata: Metadata = {
   title: '코박죽 블로그',
