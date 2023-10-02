@@ -12,14 +12,17 @@ const HomeNav = () => {
                 routes.map(item => {
                     return (
                         <div className='h-fit w-full px-4 text-sm font-semibold' key={item.title}>
-                            <div className='w-full text-left py-1 group cursor-pointer'>{item.title}
-                                {item.Sub !== undefined && <div className='text-right h-[0px] overflow-hidden group-hover:h-fit'>
-                                    {item.Sub && item.Sub.map(sub => {
-                                        return (
-                                            <Link href={sub.url} className='font-normal' key={sub.title}>{sub.title}<br /></Link>
-                                        )
-                                    })}
-                                </div>}
+                            <div className='w-full text-left py-1 group cursor-pointer'>
+                                {item.title}
+                                {
+                                    item.Sub !== undefined && <section className='text-right h-[0px] overflow-hidden group-hover:h-fit'>
+                                        {item.Sub && item.Sub.map(sub => {
+                                            return (
+                                                <Link href={sub.url} className='font-normal' key={sub.title}>{sub.title}<br /></Link>
+                                            )
+                                        })}
+                                    </section>
+                                }
                             </div>
                         </div>
                     );

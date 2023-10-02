@@ -1,4 +1,4 @@
-type RouteInform = {
+export type RouteInform = {
     title : string,
     url : string,
     Sub? : RouteInform[],
