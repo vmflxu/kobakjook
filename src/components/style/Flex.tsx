@@ -1,76 +1,102 @@
 import { twMerge } from "tailwind-merge";
 
-export type FlexDivProps = {} & React.HTMLProps<HTMLDivElement>;
+export type FlexStyleProps<T extends React.ElementType> = {
+    as?: T,
+    className?: string,
+    children?: React.ReactNode,
+} & React.ComponentPropsWithoutRef<T>
+// export type FlexDivProps = {
+//     as? : string,
 
-const Hstack = ({ className, children, ...props }: FlexDivProps) => {
+// } & ;
+
+const Hstack = <T extends React.ElementType = "div">({
+    as, className, children, ...props
+}: FlexStyleProps<T>) => {
+    const TagName = as ?? "div";
     const combination = twMerge(
         "flex flex-row",
         className
     );
     return (
-        <div className={combination} {...props}>
+        <TagName className={combination} {...props}>
             {children}
-        </div>
+        </TagName>
     );
 }
 
-const Vstack = ({ className, children, ...props }: FlexDivProps) => {
+const Vstack = <T extends React.ElementType = "div">({
+    as, className, children, ...props
+}: FlexStyleProps<T>) => {
+    const TagName = as ?? "div";
     const combination = twMerge(
         "flex flex-col",
         className
     );
     return (
-        <div className={combination} {...props}>
+        <TagName className={combination} {...props}>
             {children}
-        </div>
+        </TagName>
     );
 }
 
-const HCenter = ({ className, children, ...props }: FlexDivProps) => {
+const HCenter = <T extends React.ElementType = "div">({
+    as, className, children, ...props
+}: FlexStyleProps<T>) => {
+    const TagName = as ?? "div";
     const combination = twMerge(
         "flex flex-col items-center",
         className
     );
     return (
-        <div className={combination} {...props}>
+        <TagName className={combination} {...props}>
             {children}
-        </div>
+        </TagName>
     );
 }
 
-const VCenter = ({ className, children, ...props }: FlexDivProps) => {
+const VCenter = <T extends React.ElementType = "div">({
+    as, className, children, ...props
+}: FlexStyleProps<T>) => {
+    const TagName = as ?? "div";
     const combination = twMerge(
         "flex flex-col items-center",
         className
     );
     return (
-        <div className={combination} {...props}>
+        <TagName className={combination} {...props}>
             {children}
-        </div>
+        </TagName>
     );
 }
 
-const Center = ({ className, children, ...props }: FlexDivProps) => {
+const Center = <T extends React.ElementType = "div">({
+    as, className, children, ...props
+}: FlexStyleProps<T>) => {
+    const TagName = as ?? "div";
     const combination = twMerge(
         "flex flex-col items-center justify-center",
         className
     );
     return (
-        <div className={combination} {...props}>
+        <TagName className={combination} {...props}>
             {children}
-        </div>
+        </TagName>
     );
 }
 
-const HBetween = ({ className, children, ...props }: FlexDivProps) => {
+const HBetween = <T extends React.ElementType = "div">({
+    as, className, children, ...props
+}: FlexStyleProps<T>) => {
+    const TagName = as ?? "div";
     const combination = twMerge(
         "flex flex-row justify-between",
         className
     );
     return (
-        <div className={combination} {...props}>
+        <TagName className={combination} {...props}>
             {children}
-        </div>
+        </TagName>
     );
 }
 

@@ -46,7 +46,6 @@ export default function RootLayout({
               <Image
                 src={profile}
                 alt='profile'
-                objectFit='cover'
                 width={60}
                 height={60}
                 className='rounded-full'

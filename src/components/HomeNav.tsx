@@ -2,29 +2,36 @@
 // import { collection, collectionGroup, doc, getDoc, getDocs } from 'firebase/firestore'
 import { routes } from '@/values/routes'
 import Link from 'next/link';
+import { headers } from "next/headers";
 import React from 'react'
+import MenuContainer from './MenuContainer';
+import MenuTitle from './MenuTitle';
+import SubMenuContainer from './SubMenuContainer';
+import SubMenu from './SubMenu';
 
 const HomeNav = () => {
-    // const router =
+    const path = headers().get('referer')?.split('/');
+    const now = path?.slice(3);
+    console.log('fullUrl', path);
+    console.log('now',now);
     return (
         <nav className='flex flex-col w-full bg-red-200 mx-auto h-full items-center min-h-screen'>
             {
                 routes.map(item => {
                     return (
-                        <div className='h-fit w-full px-4 text-sm font-semibold' key={item.title}>
+                        <MenuContainer key={item.title}>
                             <div className='w-full text-left py-1 group cursor-pointer'>
-                                {item.title}
-                                {
-                                    item.Sub !== undefined && <section className='text-right h-[0px] overflow-hidden group-hover:h-fit'>
-                                        {item.Sub && item.Sub.map(sub => {
-                                            return (
-                                                <Link href={sub.url} className='font-normal' key={sub.title}>{sub.title}<br /></Link>
-                                            )
-                                        })}
-                                    </section>
-                                }
+                                <MenuTitle data={item} />
+                                {!!item.Sub && <SubMenuContainer>
+                                    {item.Sub && item.Sub.map(sub => {
+                                        return (
+                                            <SubMenu menu={sub} key={sub.url}/>
+                                            // <Link href={sub.url} className='font-normal' key={sub.title}>{sub.title}<br /></Link>
+                                        )
+                                    })}
+                                </SubMenuContainer>}
                             </div>
-                        </div>
+                        </MenuContainer>
                     );
                 })
             }
