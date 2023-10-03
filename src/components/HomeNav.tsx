@@ -10,8 +10,6 @@ import SubMenu from './SubMenu';
 const HomeNav = () => {
     const path = headers().get('referer')?.split('/');
     const now = path?.slice(3);
-    console.log('fullUrl', path);
-    console.log('now',now);
     return (
         <nav className='flex flex-col w-full bg-red-200 mx-auto h-full items-center min-h-screen'>
             {
@@ -24,8 +22,7 @@ const HomeNav = () => {
 
                                     {item.Sub && item.Sub.map(sub => {
                                         return (
-                                            <SubMenu menu={sub} key={sub.url}/>
-                                            // <Link href={sub.url} className='font-normal' key={sub.title}>{sub.title}<br /></Link>
+                                            <SubMenu menu={sub} key={sub.url} />
                                         )
                                     })}
                                 </SubMenuContainer>}
