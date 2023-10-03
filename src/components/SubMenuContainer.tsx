@@ -11,13 +11,10 @@ const SubMenuContainer = ({ data, children }: { data:RouteInform, children: Reac
     const [style,setStyle] = useState<string>();
     
     useEffect(()=>{
-        console.log('pathName',pathName);
-        // console.log('교체',data.Sub?.map(item=>item.url));
         const check = data.Sub?.map(item=>item.url).includes(pathName);
-        console.log('check:',check);
         const heightStyle = check ? 'h-fit' : 'h-[0px]';
         const merge = twMerge(heightStyle, baseStyle);
-        console.log('merge',merge);
+
         setStyle(merge);
     },[pathName])
     return (

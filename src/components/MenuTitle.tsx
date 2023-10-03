@@ -24,8 +24,8 @@ const MenuTitle = ({ data }: { data: RouteInform }) => {
         } else {
             // setColor(textColor.normal);
             setColor('text-black');
-        }
 
+        }
     }, [pathName]);
 
     return (

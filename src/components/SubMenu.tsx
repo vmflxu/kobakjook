@@ -21,14 +21,9 @@ const SubMenu = ({ menu }: { menu: RouteInform }) => {
     useEffect(() => {
         const parsedPath = pathName.split('/').slice(1);
         const parsedDataPath = menu.url.replace('/', '').split('/');
-        // parsedDataPath.pop();
-        console.log('dd',parsedPath);
-        console.log('ff',parsedDataPath);
         const subMenuStyle = JSON.stringify(parsedPath) === JSON.stringify(parsedDataPath) ? 'text-red-700' : 'text-black';
-        console.log("들어왔고,", subMenuStyle);
         const mergedStyle = twMerge('text-normal hover:text-blue-500', subMenuStyle);
         setStyle(mergedStyle);
-
     }, [pathName]);
     return (
         <a className={style} onClick={onClickHandler}>{menu.title}<br /></a>
