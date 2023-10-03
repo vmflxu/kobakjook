@@ -11,7 +11,7 @@ const MenuTitle = ({ data }: { data: RouteInform }) => {
     const [color, setColor] = useState<string>(textColor.normal);
 
     const onClickHandler = () => {
-        route.push(data.url);
+        !data.Sub && route.push(data.url);
     }
 
     useEffect(() => {
@@ -19,9 +19,11 @@ const MenuTitle = ({ data }: { data: RouteInform }) => {
         const parsedDataPath = data.url.replaceAll('/', '');
 
         if (parsedPath[0] === parsedDataPath) {
-            setColor(textColor.selected);
+            // setColor(textColor.selected);
+            setColor('text-red-700');
         } else {
-            setColor(textColor.normal);
+            // setColor(textColor.normal);
+            setColor('text-black');
         }
 
     }, [pathName]);
