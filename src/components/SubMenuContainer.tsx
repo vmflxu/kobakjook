@@ -19,7 +19,7 @@ const SubMenuContainer = ({ data, children }: { data: RouteInform, children: Rea
     }, [pathName]);
 
     return (
-        <section style={{ height: '0px', textAlign: 'right' }} className={twMerge('h-[0px]', style)}>
+        <section className={twMerge('h-[0px]', style)}>
             {children}
         </section>
     )
