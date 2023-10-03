@@ -52,9 +52,11 @@ export default function RootLayout({
               />
             </div>
             <Flex.VCenter className='text-xs flex-1 items-end'>
+              {/* <section className='flex flex-col text-xs flex-1 items-end'> */}
               <span>{"코드에 머리박고 죽을때까지"}</span>
               <span>{"Frontend Developer"}</span>
               <span>{"코박죽의 블로그입니다"}</span>
+              {/* </section> */}
             </Flex.VCenter>
           </Flex.Hstack>
           <HomeNav />
@@ -63,6 +65,6 @@ export default function RootLayout({
           {children}
         </main>
       </body>
-    </html>
+    </html >
   )
 }

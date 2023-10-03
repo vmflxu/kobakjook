@@ -4,21 +4,22 @@ import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge';
 
-const SubMenuContainer = ({ data, children }: { data:RouteInform, children: React.ReactNode }) => {
+const SubMenuContainer = ({ data, children }: { data: RouteInform, children: React.ReactNode }) => {
     const pathName = usePathname();
     const baseStyle = 'text-right overflow-hidden group-hover:h-fit';
-    const heightStyle = pathName.split('/').includes(data.url.replace('/','')) ? 'h-fit' : 'h-[0px]';
-    const [style,setStyle] = useState<string>();
-    
-    useEffect(()=>{
-        const check = data.Sub?.map(item=>item.url).includes(pathName);
+    const heightStyle = pathName.split('/').includes(data.url.replace('/', '')) ? 'h-fit' : 'h-[0px]';
+    const [style, setStyle] = useState<string>('h-[0px]');
+
+    useEffect(() => {
+        const check = data.Sub?.map(item => item.url).includes(pathName);
         const heightStyle = check ? 'h-fit' : 'h-[0px]';
         const merge = twMerge(heightStyle, baseStyle);
 
         setStyle(merge);
-    },[pathName])
+    }, [pathName]);
+
     return (
-        <section className={style}>
+        <section style={{ height: '0px', textAlign: 'right' }} className={twMerge('h-[0px]', style)}>
             {children}
         </section>
     )
