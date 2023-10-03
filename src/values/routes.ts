@@ -19,11 +19,11 @@ export const routes : RouteInform[] = [
         Sub : [
             {
                 title: 'React/Next',
-                url : '/posts/react/'
+                url : '/posts/react'
             },
             {
                 title: 'Web3',
-                url : '/posts/web3/'
+                url : '/posts/web3'
             },
         ]
     },

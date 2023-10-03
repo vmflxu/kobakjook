@@ -1,5 +1,3 @@
-// import { db } from '@/app/layout'
-// import { collection, collectionGroup, doc, getDoc, getDocs } from 'firebase/firestore'
 import { routes } from '@/values/routes'
 import Link from 'next/link';
 import { headers } from "next/headers";
@@ -22,7 +20,8 @@ const HomeNav = () => {
                         <MenuContainer key={item.title}>
                             <div className='w-full text-left py-1 group cursor-pointer'>
                                 <MenuTitle data={item} />
-                                {!!item.Sub && <SubMenuContainer>
+                                {!!item.Sub && <SubMenuContainer data={item}>
+
                                     {item.Sub && item.Sub.map(sub => {
                                         return (
                                             <SubMenu menu={sub} key={sub.url}/>
