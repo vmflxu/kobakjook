@@ -11,8 +11,11 @@ const SubMenu = ({ menu }: { menu: RouteInform }) => {
     const [style, setStyle] = useState<string>('text-normal text-black');
 
     const onClickHandler = () => {
-        router.prefetch(menu.url);
         router.push(menu.url);
+    }
+
+    const onMouseEnterHandler = () => {
+        router.prefetch(menu.url);
     }
 
     useEffect(() => {
@@ -23,7 +26,7 @@ const SubMenu = ({ menu }: { menu: RouteInform }) => {
         setStyle(mergedStyle);
     }, [pathName]);
     return (
-        <a className={style} onClick={onClickHandler}>{menu.title}<br /></a>
+        <a className={style} onClick={onClickHandler} onMouseEnter={onMouseEnterHandler}>{menu.title}<br /></a>
     )
 }
 

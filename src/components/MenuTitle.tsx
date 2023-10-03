@@ -14,6 +14,10 @@ const MenuTitle = ({ data }: { data: RouteInform }) => {
         !data.Sub && route.push(data.url);
     }
 
+    const onMouseEnterHandler = () => {
+        !data.Sub && route.prefetch(data.url);
+    }
+
     useEffect(() => {
         const parsedPath = pathName.split('/').slice(1);
         const parsedDataPath = data.url.replaceAll('/', '');
@@ -29,7 +33,11 @@ const MenuTitle = ({ data }: { data: RouteInform }) => {
     }, [pathName]);
 
     return (
-        <span className={`${twMerge(color,'hover:text-blue-500')}`} onClick={onClickHandler}>
+        <span
+            className={`${twMerge(color, 'hover:text-blue-500')}`}
+            onClick={onClickHandler}
+            onMouseEnter={onMouseEnterHandler}
+        >
             {data.title}
         </span>
     )
