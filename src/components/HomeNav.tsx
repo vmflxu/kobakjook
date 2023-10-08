@@ -11,7 +11,7 @@ const HomeNav = () => {
     const path = headers().get('referer')?.split('/');
     const now = path?.slice(3);
     return (
-        <nav className='flex flex-col w-full bg-red-200 mx-auto h-full items-center min-h-screen'>
+        <nav className='flex flex-col w-full mx-auto h-full items-center min-h-screen'>
             {
                 routes.map(item => {
                     return (
