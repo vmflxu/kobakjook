@@ -1,18 +1,11 @@
 import { Flex } from '@/components/style/Flex'
 import './globals.css'
 import type { Metadata } from 'next'
-// import {Pretendard} from 'next/font'
-import { Noto_Sans_KR } from 'next/font/google'
 import Image from 'next/image';
 import path from '@/values/asset/path';
 import profile from '#/profile/JYP.png'
-// import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
-// import { collection, doc, getFirestore, setDoc } from "firebase/firestore";
 import HomeNav from '@/components/HomeNav';
-// import { pretendard } from "../../node_modules/pretendard/dist/web/static/woff.css";
 
-const noto = Noto_Sans_KR({ subsets: ['latin'] });
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -39,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={noto.style} className='flex flex-row gap-0'>
+      <body className='flex flex-row gap-0 font-Pretendard font-normal'>
         <header className='flex flex-col w-[250px] h-full sticky items-center gap-8 bg-red-200'>
           <Flex.Hstack className='w-full px-4 gap-4 mt-8'>
             <div className='aspect-square w-fit'>
