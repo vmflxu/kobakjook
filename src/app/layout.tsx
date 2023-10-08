@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className='flex flex-row gap-0 font-Pretendard font-normal text-lg'>
-        <header className='flex flex-col w-96 h-full sticky items-center gap-8 bg-red-200'>
+        <header className='flex flex-col w-96 h-full sticky items-center gap-8'>
           <Flex.Hstack className='w-full px-8 gap-4 mt-8 justify-between items-center'>
             <div className='aspect-square w-fit'>
               <Image
