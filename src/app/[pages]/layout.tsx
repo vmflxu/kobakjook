@@ -8,7 +8,7 @@ import path from '@/values/asset/path';
 import profile from '#/profile/JYP.png'
 // import { pretendard } from "../../node_modules/pretendard/dist/web/static/woff.css";
 
-const noto = Noto_Sans_KR({ subsets: ['latin'] });
+// const noto = Noto_Sans_KR({ subsets: ['latin'] });
 
 export default function PagesLayout({
     children,

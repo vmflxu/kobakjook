@@ -1,9 +1,13 @@
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 import React from 'react'
 
-const page = ({ params }: { params: string }) => {
+type PageParams = {
+    pages: string,
+}
+const page = ({ params }: { params: PageParams }) => {
     return (
         <div className='w-full'>
-            {`받은 값은 ${params}`}
+            {`Page 이름은 ${params.pages} 페이지`}
         </div>
     )
 }
