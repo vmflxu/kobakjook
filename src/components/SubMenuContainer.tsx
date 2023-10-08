@@ -11,8 +11,8 @@ const SubMenuContainer = ({
     children: React.ReactNode
 }) => {
     const { path, setPath, openedSubMenu } = useNavMenuStore();
-    const baseStyle = 'text-right h-[0px] overflow-hidden';
-    const openStyle = 'text-right h-fit overflow-hidden';
+    const baseStyle = 'text-right h-[0px] overflow-hidden font-normal';
+    const openStyle = 'text-right h-fit overflow-hidden font-normal';
     const [containerStyle, setContainerStyle] = useState<string>(baseStyle);
 
     const pathName = usePathname();
