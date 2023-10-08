@@ -32,24 +32,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='flex flex-row gap-0 font-Pretendard font-normal'>
-        <header className='flex flex-col w-[250px] h-full sticky items-center gap-8 bg-red-200'>
-          <Flex.Hstack className='w-full px-4 gap-4 mt-8'>
+      <body className='flex flex-row gap-0 font-Pretendard font-normal text-lg'>
+        <header className='flex flex-col w-96 h-full sticky items-center gap-8 bg-red-200'>
+          <Flex.Hstack className='w-full px-8 gap-4 mt-8 justify-between items-center'>
             <div className='aspect-square w-fit'>
               <Image
                 src={profile}
                 alt='profile'
-                width={60}
-                height={60}
+                width={80}
+                height={80}
                 className='rounded-full'
               />
             </div>
-            <Flex.VCenter className='text-xs flex-1 items-end'>
-              {/* <section className='flex flex-col text-xs flex-1 items-end'> */}
-              <span>{"코드에 머리박고 죽을때까지"}</span>
+            <Flex.VCenter className='text-normal flex-1 items-end'>
+              <span>{"코드에 머리박고 죽을때까지!"}</span>
               <span>{"Frontend Developer"}</span>
               <span>{"코박죽의 블로그입니다"}</span>
-              {/* </section> */}
             </Flex.VCenter>
           </Flex.Hstack>
           <HomeNav />
