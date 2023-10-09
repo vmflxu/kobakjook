@@ -59,6 +59,9 @@ export default async function RootLayout({
         <main className='w-full flex-1'>
           {children}
         </main>
+        <div className={'fixed right-8 bottom-8 overflow-hidden rounded-xl'}>
+          {"글 작성"}
+        </div>
       </body>
     </html >
   )
