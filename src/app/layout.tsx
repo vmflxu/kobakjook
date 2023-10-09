@@ -7,6 +7,7 @@ import profile from '#/profile/JYP.png'
 import HomeNav from '@/components/HomeNav';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, getDocs, collection } from 'firebase/firestore';
+import { headers } from 'next/headers';
 
 
 const firebaseConfig = {
@@ -32,6 +33,13 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const host = headers().get("host");
+    const protocal = process?.env.NODE_ENV==="development"?"http":"https"
+  const res = await fetch(`${protocal}://${host}/api/menu`,{method: 'GET'});
+  const data = await res.json();
+  console.log('data',data);
+  // const res = await getBasic();
+  // console.log(res);api/menu
   // const docRef = collection(db,"Routers");
   // const temp = await getDocs(docRef);
   // temp.forEach(doc => console.log(doc.id, doc.data()));
@@ -60,7 +68,7 @@ export default async function RootLayout({
           {children}
         </main>
         <div className={'fixed right-8 bottom-8 overflow-hidden rounded-xl'}>
-          {"글 작성"}
+          {data.msg}
         </div>
       </body>
     </html >
