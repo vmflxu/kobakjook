@@ -12,7 +12,7 @@ type TempData = {
 
 export default async function MainSection() {
   const querySnapshot = await getDocs(collection(db, "Routers"));
-  const temp = querySnapshot.forEach(item => console.log(item));
+  // const temp = querySnapshot.forEach(item => console.log(item));
   // console.log(temp);
   return (
     <>
