@@ -8,6 +8,7 @@ import HomeNav from '@/components/HomeNav';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, getDocs, collection } from 'firebase/firestore';
 import { headers } from 'next/headers';
+import { MongoClient } from 'mongodb';
 
 
 const firebaseConfig = {
@@ -37,7 +38,15 @@ export default async function RootLayout({
     const protocal = process?.env.NODE_ENV==="development"?"http":"https"
   const res = await fetch(`${protocal}://${host}/api/menu`,{method: 'GET'});
   const data = await res.json();
+
+  const client = await MongoClient.connect(process.env.NEXT_PUBLIC_MONGO_DB as string);
+  const db = client.db();
+  const col = db.collection("Menu");
+
+  const ddd = await col.find().toArray();
+  client.close();
   console.log('data',data);
+  console.log(ddd);
   // const res = await getBasic();
   // console.log(res);api/menu
   // const docRef = collection(db,"Routers");
