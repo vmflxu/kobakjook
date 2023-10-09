@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 type GetBodyType = {
     id: string,
 }
-export async function GET(req: NextApiRequest) {
+export async function GET(req: NextRequest) {
     // console.log('request:',req);
     return NextResponse.json({msg : 'success'});
 }
