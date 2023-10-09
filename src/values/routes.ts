@@ -1,34 +1,21 @@
 export type RouteInform = {
-    title: string,
-    url: string,
+    id: string,
+    path: string,
+    order?: number,
     Sub?: Omit<RouteInform, 'Sub'>[],
 }
 
 export const routes: RouteInform[] = [
     {
-        title: 'Blog Home',
-        url: '/'
+        id: 'Blog Home',
+        path: '/'
     },
     {
-        title: 'About Me',
-        url: '/about'
+        id: 'About Me',
+        path: '/about'
     },
     {
-        title: 'Posts',
-        url: '/posts',
-        Sub: [
-            {
-                title: 'React/Next',
-                url: '/posts/react'
-            },
-            {
-                title: 'Web3',
-                url: '/posts/web3'
-            },
-        ]
+        id: 'Posts',
+        path: '/posts',
     },
-    {
-        title: 'Test',
-        url: '/test',
-    }
 ]

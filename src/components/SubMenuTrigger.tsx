@@ -11,27 +11,17 @@ const SubMenuTrigger = ({ data, children }: { data: RouteInform, children: React
     const [color, setColor] = useState<string>(textColor.normal);
 
     const {
-        path,
-        openedSubMenu,
         setPath,
-        addOpenedSubMenu,
-        removeOpenedSubMenu
+            toggleIsOpenSubMenu
     } = store.useNavMenuStore();
 
     const onClickHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        if (data.Sub !== undefined) {
-            if (openedSubMenu.includes(data.url.replace('/', ''))) {
-                removeOpenedSubMenu(data.url.replace('/', ''));
-            } else {
-                addOpenedSubMenu(data.url.replace('/', ''));
-            }
-        }
-        console.log(openedSubMenu);
+        data.path === '/posts' && toggleIsOpenSubMenu();
     }
 
     useEffect(() => {
         const parsedPath = pathName.split('/').slice(1);
-        const parsedDataPath = data.url.replaceAll('/', '');
+        const parsedDataPath = data.path.replaceAll('/', '');
         setPath(parsedDataPath[0]);
 
         if (parsedPath[0] === parsedDataPath) {

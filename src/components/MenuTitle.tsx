@@ -8,17 +8,17 @@ const MenuTitle = ({ data }: { data: RouteInform }) => {
     return (
         <SubMenuTrigger data={data}>
             {
-                data.Sub === undefined
+                data.id !== "Posts"
                     ? (
-                        <Link href={data.url}>
+                        <Link href={data.path}>
                             <span className={'text-inherit hover:text-blue-500'}>
-                                {data.title}
+                                {data.id}
                             </span>
                         </Link>
                     )
                     : (
                         <span className={'text-inherit hover:text-blue-500'}>
-                            {data.title}
+                            {data.id}
                         </span>
                     )
             }

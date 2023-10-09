@@ -2,6 +2,8 @@ import { Flex } from "@/components/style/Flex";
 import Temp from "@/components/style/Temp";
 
 import { ReactNode } from "react";
+import { db } from "./layout";
+import { collection,getDocs } from "firebase/firestore";
 
 type TempData = {
   name: string,
@@ -9,7 +11,9 @@ type TempData = {
 }
 
 export default async function MainSection() {
-
+  const querySnapshot = await getDocs(collection(db, "Routers"));
+  const temp = querySnapshot.forEach(item => console.log(item));
+  // console.log(temp);
   return (
     <>
       {'블로그 메인'}

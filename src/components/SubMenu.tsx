@@ -11,22 +11,22 @@ const SubMenu = ({ menu }: { menu: RouteInform }) => {
     const [style, setStyle] = useState<string>('text-normal text-black');
 
     const onClickHandler = () => {
-        router.push(menu.url);
+        router.push(menu.path);
     }
 
     const onMouseEnterHandler = () => {
-        router.prefetch(menu.url);
+        router.prefetch(menu.path);
     }
 
     useEffect(() => {
         const parsedPath = pathName.split('/').slice(1);
-        const parsedDataPath = menu.url.replace('/', '').split('/');
+        const parsedDataPath = menu.path.replace('/', '').split('/');
         const subMenuStyle = JSON.stringify(parsedPath) === JSON.stringify(parsedDataPath) ? 'text-red-700' : 'text-black';
         const mergedStyle = twMerge('text-normal hover:text-blue-500', subMenuStyle);
         setStyle(mergedStyle);
     }, [pathName]);
     return (
-        <a className={style} onClick={onClickHandler} onMouseEnter={onMouseEnterHandler}>{menu.title}<br /></a>
+        <a className={style} onClick={onClickHandler} onMouseEnter={onMouseEnterHandler}>{menu.id}<br /></a>
     )
 }
 
