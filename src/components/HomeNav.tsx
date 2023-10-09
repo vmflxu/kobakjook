@@ -12,15 +12,16 @@ import { db } from '@/app/layout';
 const HomeNav = async () => {
     const subMenuRef = collection(db, "Posts");
     const snapShot = await getDocs(subMenuRef);
-    let subMenu:RouteInform[] = [];
-    snapShot.forEach((doc) => {
+    let subMenu: RouteInform[] = [];
+    const temp = snapShot.docs[0].id;
+    snapShot?.forEach((doc) => {
         subMenu.push({
             id: doc.id,
-            path: '/posts'+doc.data().path,
+            path: '/posts' + doc.data().path,
             order: doc.data().order,
         })
     });
-    subMenu.sort((a,b) => (a.order as number) - (b.order as number));
+    subMenu.sort((a, b) => (a.order as number) - (b.order as number));
     return (
         <nav className='flex flex-col w-full mx-auto h-full items-center min-h-screen'>
             {
@@ -29,18 +30,20 @@ const HomeNav = async () => {
                         <MenuContainer key={item.id}>
                             <div className='w-full text-left py-1 group cursor-pointer'>
                                 <MenuTitle data={item} />
-                                {item.id==='Posts' && <SubMenuContainer route={item.path.replace('/', '')}>
+                                {item.id === 'Posts' && <SubMenuContainer route={item.path.replace('/', '')}>
                                     {subMenu.length > 0 && subMenu.map(sub => {
                                         return (
                                             <SubMenu menu={sub} key={sub.path} />
                                         )
                                     })}
                                 </SubMenuContainer>}
+
                             </div>
                         </MenuContainer>
                     );
                 })
             }
+            <div>{temp}</div>
         </nav>
     )
 }
