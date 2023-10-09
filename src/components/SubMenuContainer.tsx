@@ -10,30 +10,18 @@ const SubMenuContainer = ({
     route: string,
     children: React.ReactNode
 }) => {
-    const { path, setPath, openedSubMenu } = useNavMenuStore();
-    const baseStyle = 'text-right h-[0px] overflow-hidden font-normal';
+    const { path, setPath, isOpenSubMenu, openedSubMenu } = useNavMenuStore();
+    const closeStyle = 'text-right h-[0px] overflow-hidden font-normal';
     const openStyle = 'text-right h-fit overflow-hidden font-normal';
-    const [containerStyle, setContainerStyle] = useState<string>(baseStyle);
-
-    const pathName = usePathname();
+    const [containerStyle, setContainerStyle] = useState<string>(openStyle);
 
     useEffect(() => {
-        setPath(pathName.replace('/', '').split('/')[0]);
-
-        if (path === route || openedSubMenu.includes(pathName.replace('/', '').split('/')[0])) {
+        if (isOpenSubMenu) {
             setContainerStyle(openStyle);
         } else {
-            setContainerStyle(baseStyle);
+            setContainerStyle(closeStyle);
         }
-    }, [pathName]);
-
-    useEffect(() => {
-        if (openedSubMenu.includes(route)) {
-            setContainerStyle(openStyle);
-        } else {
-            setContainerStyle(baseStyle);
-        }
-    }, [openedSubMenu]);
+    }, [isOpenSubMenu]);
     return (
         <section className={containerStyle}>
             {children}
