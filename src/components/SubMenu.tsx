@@ -6,27 +6,18 @@ import React, { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const SubMenu = ({ menu }: { menu: RouteInform }) => {
-    const router = useRouter();
     const pathName = usePathname();
     const [style, setStyle] = useState<string>('text-normal text-black');
 
-    const onClickHandler = () => {
-        router.push(menu.path);
-    }
-
-    const onMouseEnterHandler = () => {
-        router.prefetch(menu.path);
-    }
-
     useEffect(() => {
-        const parsedPath = pathName.split('/').slice(1);
-        const parsedDataPath = menu.path.replace('/', '').split('/');
+        const parsedPath = pathName.split('/').slice(1)[1];
+        const parsedDataPath = menu.path.replace('/', '');
         const subMenuStyle = JSON.stringify(parsedPath) === JSON.stringify(parsedDataPath) ? 'text-red-700' : 'text-black';
         const mergedStyle = twMerge('text-normal hover:text-blue-500', subMenuStyle);
         setStyle(mergedStyle);
     }, [pathName]);
     return (
-        <a className={style} onClick={onClickHandler} onMouseEnter={onMouseEnterHandler}>{menu.id}<br /></a>
+        <span className={style}>{menu.title}<br /></span>
     )
 }
 

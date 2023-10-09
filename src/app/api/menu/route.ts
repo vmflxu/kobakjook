@@ -4,10 +4,19 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-    // console.log('request:',req);
-    // try {
-    //     await connectDB();
-    //     await Menu.create()
-    // }
-    return NextResponse.json({msg : 'success'});
+    const subMenu = [
+        {
+            title: "React",
+            path: "/react"
+        },
+        {
+            title: "NextJS",
+            path: "/next-js"
+        },
+        {
+            title: "Life",
+            path: "/life"
+        },
+    ]
+    return NextResponse.json({ subMenu });
 }
