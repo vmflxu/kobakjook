@@ -8,6 +8,7 @@ import HomeNav from '@/components/HomeNav';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, getDocs, collection } from 'firebase/firestore';
 import { headers } from 'next/headers';
+import { MongoClient } from 'mongodb';
 
 
 const firebaseConfig = {
@@ -33,11 +34,19 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const host = headers().get("host");
-    const protocal = process?.env.NODE_ENV==="development"?"http":"https"
-  const res = await fetch(`${protocal}://${host}/api/menu`,{method: 'GET'});
-  const data = await res.json();
-  console.log('data',data);
+  // const host = headers().get("host");
+  // const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
+  // const res = await fetch(`${protocal}://${host}/api/menu`, { method: 'GET' });
+  // const data = await res.json();
+
+  // const client = await MongoClient.connect(process.env.NEXT_PUBLIC_MONGO_DB as string);
+  // const db = client.db();
+  // const col = db.collection("Menu");
+
+  // const ddd = await col.find().toArray();
+  // client.close();
+  // console.log('data', data);
+  // console.log(ddd);
   // const res = await getBasic();
   // console.log(res);api/menu
   // const docRef = collection(db,"Routers");
@@ -67,8 +76,8 @@ export default async function RootLayout({
         <main className='w-full flex-1'>
           {children}
         </main>
-        <div className={'fixed right-8 bottom-8 overflow-hidden rounded-xl'}>
-          {data.msg}
+        <div className={'fixed right-8 bottom-8 overflow-hidden rounded-2xl bg-blue-500 px-8 py-4 text-white font-bold hover:bg-slate-700 cursor-pointer'}>
+          {"글 작성"}
         </div>
       </body>
     </html >

@@ -9,31 +9,41 @@ import SubMenu from './SubMenu';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '@/app/layout';
 
+type MenuBody = {
+    subMenu: RouteInform[],
+}
 const HomeNav = async () => {
-    const subMenuRef = collection(db, "Posts");
-    const snapShot = await getDocs(subMenuRef);
-    let subMenu: RouteInform[] = [];
-    // const temp = snapShot.docs[0].id;
-    snapShot?.forEach((doc) => {
-        subMenu.push({
-            id: doc.id,
-            path: '/posts' + doc.data().path,
-            order: doc.data().order,
-        })
-    });
-    subMenu.sort((a, b) => (a.order as number) - (b.order as number));
+    const host = headers().get("host");
+    const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
+    const res = await fetch(`${protocal}://${host}/api/menu`, { method: 'GET' });
+    const data: MenuBody = await res.json();
+    console.log('dd', data.subMenu);
+    // const subMenuRef = collection(db, "Posts");
+    // const snapShot = await getDocs(subMenuRef);
+    // let subMenu: RouteInform[] = [];
+    // // const temp = snapShot.docs[0].id;
+    // snapShot?.forEach((doc) => {
+    //     subMenu.push({
+    //         id: doc.id,
+    //         path: '/posts' + doc.data().path,
+    //         order: doc.data().order,
+    //     })
+    // });
+    // subMenu.sort((a, b) => (a.order as number) - (b.order as number));
     return (
         <nav className='flex flex-col w-full mx-auto h-full items-center min-h-screen'>
             {
                 routes.map(item => {
                     return (
-                        <MenuContainer key={item.id}>
+                        <MenuContainer key={item.title}>
                             <div className='w-full text-left py-1 group cursor-pointer'>
                                 <MenuTitle data={item} />
-                                {item.id === 'Posts' && <SubMenuContainer route={item.path.replace('/', '')}>
-                                    {subMenu.length > 0 && subMenu.map(sub => {
+                                {item.title === 'Posts' && <SubMenuContainer route={item.path.replace('/', '')}>
+                                    {!!data && data.subMenu.map(sub => {
                                         return (
-                                            <SubMenu menu={sub} key={sub.path} />
+                                            <Link href={'/posts' + sub.path} key={sub.path}>
+                                                <SubMenu menu={sub} />
+                                            </Link>
                                         )
                                     })}
                                 </SubMenuContainer>}

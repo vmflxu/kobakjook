@@ -1,5 +1,5 @@
 export type RouteInform = {
-    id: string,
+    title: string,
     path: string,
     order?: number,
     Sub?: Omit<RouteInform, 'Sub'>[],
@@ -7,15 +7,15 @@ export type RouteInform = {
 
 export const routes: RouteInform[] = [
     {
-        id: 'Blog Home',
+        title: 'Blog Home',
         path: '/'
     },
     {
-        id: 'About Me',
+        title: 'About Me',
         path: '/about'
     },
     {
-        id: 'Posts',
+        title: 'Posts',
         path: '/posts',
     },
 ]
