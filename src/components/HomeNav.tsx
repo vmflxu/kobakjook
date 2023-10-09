@@ -13,7 +13,7 @@ const HomeNav = async () => {
     const subMenuRef = collection(db, "Posts");
     const snapShot = await getDocs(subMenuRef);
     let subMenu: RouteInform[] = [];
-    const temp = snapShot.docs[0].id;
+    // const temp = snapShot.docs[0].id;
     snapShot?.forEach((doc) => {
         subMenu.push({
             id: doc.id,
@@ -43,7 +43,7 @@ const HomeNav = async () => {
                     );
                 })
             }
-            <div>{temp}</div>
+            {/* <div>{temp}</div> */}
         </nav>
     )
 }
