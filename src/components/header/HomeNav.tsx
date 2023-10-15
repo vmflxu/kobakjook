@@ -14,7 +14,9 @@ export type MenuBody = {
 const HomeNav = async () => {
     const host = headers().get("host");
     const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
-    const endPoint = `${protocal}://${host}`;
+    // const protocal = "https";
+    // proptocl
+    const endPoint = `https://${host}`;
 
     const res = await fetch(`${endPoint}/api/menu`, {
         method: 'GET',
