@@ -6,17 +6,16 @@ import MenuContainer from './MenuContainer';
 import MenuTitle from './MenuTitle';
 import SubMenuContainer from './SubMenuContainer';
 import SubMenu from './SubMenu';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '@/app/layout';
 
-type MenuBody = {
+export type MenuBody = {
     subMenu: RouteInform[],
 }
+
 const HomeNav = async () => {
     const host = headers().get("host");
     const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
     const endPoint = `${protocal}://${host}`;
-    console.log('endPoint', endPoint);
+
     const res = await fetch(`${endPoint}/api/menu`, {
         method: 'GET',
         headers: {
