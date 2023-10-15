@@ -6,13 +6,16 @@ import MenuContainer from './MenuContainer';
 import MenuTitle from './MenuTitle';
 import SubMenuContainer from './SubMenuContainer';
 import SubMenu from './SubMenu';
-import { endPoint } from '@/app/layout';
 
 export type MenuBody = {
     subMenu: RouteInform[],
 }
 
 const HomeNav = async () => {
+    const host = headers().get("host");
+    const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
+    const endPoint = `${protocal}://${host}`;
+
     const res = await fetch(`${endPoint}/api/menu`, {
         method: 'GET',
         headers: {
