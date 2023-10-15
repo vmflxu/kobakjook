@@ -10,7 +10,7 @@ export type FlexStyleProps<T extends React.ElementType> = {
 
 // } & ;
 
-const Hstack = <T extends React.ElementType = "div">({
+const HStack = <T extends React.ElementType = "div">({
     as, className, children, ...props
 }: FlexStyleProps<T>) => {
     const TagName = as ?? "div";
@@ -25,7 +25,7 @@ const Hstack = <T extends React.ElementType = "div">({
     );
 }
 
-const Vstack = <T extends React.ElementType = "div">({
+const VStack = <T extends React.ElementType = "div">({
     as, className, children, ...props
 }: FlexStyleProps<T>) => {
     const TagName = as ?? "div";
@@ -101,8 +101,8 @@ const HBetween = <T extends React.ElementType = "div">({
 }
 
 export const Flex = {
-    Hstack,
-    Vstack,
+    HStack,
+    VStack,
     HCenter,
     VCenter,
     Center,

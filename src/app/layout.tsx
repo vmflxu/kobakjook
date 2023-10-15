@@ -9,6 +9,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, getDocs, collection } from 'firebase/firestore';
 import { headers } from 'next/headers';
 import { MongoClient } from 'mongodb';
+import Link from 'next/link';
 
 
 const firebaseConfig = {
@@ -56,7 +57,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className='flex flex-row gap-0 font-Pretendard font-normal text-lg'>
         <header className='flex flex-col w-96 h-full sticky items-center gap-8'>
-          <Flex.Hstack className='w-full px-8 gap-4 mt-8 justify-between items-center'>
+          <Flex.HStack className='w-full px-8 gap-4 mt-8 justify-between items-center'>
             <div className='aspect-square w-fit'>
               <Image
                 src={profile}
@@ -70,14 +71,16 @@ export default async function RootLayout({
               <span>{"코드에 머리박고 죽을때까지!"}</span>
               <span>{"Frontend Developer"}</span>
             </Flex.VCenter>
-          </Flex.Hstack>
+          </Flex.HStack>
           <HomeNav />
         </header>
         <main className='w-full flex-1'>
           {children}
         </main>
         <div className={'fixed right-8 bottom-8 overflow-hidden rounded-2xl bg-blue-500 px-8 py-4 text-white font-bold hover:bg-slate-700 cursor-pointer'}>
-          {"글 작성"}
+          <Link href='/post'>
+            {"글 작성"}
+          </Link>
         </div>
       </body>
     </html >
