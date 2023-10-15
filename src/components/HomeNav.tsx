@@ -15,9 +15,16 @@ type MenuBody = {
 const HomeNav = async () => {
     const host = headers().get("host");
     const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
-    const res = await fetch(`${protocal}://${host}/api/menu`, { method: 'GET' });
+    const endPoint = `${protocal}://${host}`;
+    console.log('endPoint', endPoint);
+    const res = await fetch(`${endPoint}/api/menu`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+        }
+    });
     const data: MenuBody = await res.json();
-    console.log('dd', data.subMenu);
+    // console.log('dd', data.subMenu);
     // const subMenuRef = collection(db, "Posts");
     // const snapShot = await getDocs(subMenuRef);
     // let subMenu: RouteInform[] = [];
