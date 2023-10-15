@@ -1,7 +1,20 @@
 import { Flex } from '@/components/style/Flex'
 import React from 'react'
+import { endPoint } from '../layout';
+import { MenuBody } from '@/components/header/HomeNav';
+import UploadButton from './_fragment/UploadButton';
+import PostTitle from './_fragment/PostTitle';
+import PostContent from './_fragment/PostContent';
+import FolderDropDown from './_fragment/FolderDropDown';
 
-const page = () => {
+const page = async () => {
+    const res = await fetch(`${endPoint}/api/menu`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+        }
+    });
+    const folderList: MenuBody = await res.json();
     const actionHandler = async (formdata: FormData) => {
         "use server"
         console.log('action clicked');
@@ -12,15 +25,10 @@ const page = () => {
     return (
         <form action={actionHandler} className='mt-16'>
             <Flex.VCenter className={'gap-8 mx-auto px-16 w-[70%]'}>
-                <Flex.VStack className={'bg-gray-600 p-4 text-white w-full'}>
-                    <label>제목</label>
-                    <input type='text' name='title' className={'border-cyan-500 text-slate-800 px-2'} />
-                </Flex.VStack>
-                <Flex.VStack className={'bg-gray-600 p-4 text-white w-full'}>
-                    <label>내용</label>
-                    <textarea name='content' className={'border-cyan-500 min-h-[300px] h-fit text-slate-800 px-2'} />
-                </Flex.VStack>
-                <button type="submit" className={'border-gray-600 border-2 py-2 px-4 rounded-full text-gray-600 font-bold'}>버튼눌리면</button>
+                <FolderDropDown data={folderList} />
+                <PostTitle label='제목' />
+                <PostContent label='내용' />
+                <UploadButton>업로드</UploadButton>
             </Flex.VCenter>
         </form>
     )

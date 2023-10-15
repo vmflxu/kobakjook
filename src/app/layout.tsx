@@ -3,6 +3,11 @@ import type { Metadata } from 'next'
 import HomeNav from '@/components/header/HomeNav';
 import Link from 'next/link';
 import Introduce from '@/components/header/Introduce';
+import { headers } from 'next/headers';
+
+const host = headers().get("host");
+const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
+export const endPoint = `${protocal}://${host}`;
 
 export const metadata: Metadata = {
   title: '코박죽 블로그',
