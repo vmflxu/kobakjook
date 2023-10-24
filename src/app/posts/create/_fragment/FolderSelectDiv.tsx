@@ -1,3 +1,4 @@
+// 'use client'
 import { MenuBody } from '@/components/header/HomeNav';
 import React from 'react'
 import { twMerge } from 'tailwind-merge';

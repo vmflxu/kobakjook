@@ -19,6 +19,14 @@ export type PostSchema = {
 }
 const page = async () => {
 
+    const res = await fetch(`${getHost()}/api/menu`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+        }
+    });
+    const data: MenuBody = await res.json();
+
     const actionHandler = async (formdata: FormData) => {
         "use server"
 
@@ -42,11 +50,11 @@ const page = async () => {
     return (
         <form action={actionHandler} className='mt-16'>
             <Flex.VCenter className={'gap-4 mx-auto px-16 w-[70%]'}>
-                {/* <FolderDropDown data={folderList} /> */}
+                <FolderDropDown data={data} />
                 <PostTitle label='제목' />
                 <PostContent label='내용' />
                 <StateTester />
-                <UploadButton>업로드</UploadButton>
+                {/* <UploadButton>업로드</UploadButton> */}
             </Flex.VCenter>
         </form>
     )
