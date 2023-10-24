@@ -1,18 +1,34 @@
+import { PostPayload } from '@/app/api/post/route';
+import { Flex } from '@/components/style/Flex';
+import { getHost } from '@/lib/getHost';
 import React from 'react'
 
 type PageParams = {
     category: string,
 }
 
-const page = ({
+const page = async ({
     params,
     searchParams
 }: {
     params: PageParams,
     searchParams: object
 }) => {
+    const res = await fetch(`${getHost()}/api/post?path=${params.category}`, {
+        method: 'GET',
+    });
+    const data = (await res.json()).data as PostPayload[];
+
     return (
-        <div>{params.category}</div>
+        <div>
+            {(!!data && data.length > 0) && data.map((item, idx) => {
+                return <div key={idx}>
+                    {item.title}<br />
+                    {item.content}
+                </div>
+            })}
+            {data.length === 0 && <Flex.Center className='h-screen'>No "{params.category}" Posts in Blog</Flex.Center>}
+        </div>
     )
 }
 

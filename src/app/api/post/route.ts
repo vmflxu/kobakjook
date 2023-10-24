@@ -10,10 +10,32 @@ export type PostPayload = {
     content: string,
 }
 
-export async function POST(req: NextRequest) {
-    const { title, path, content } = await req.json() as PostPayload;
+export type GetPayload = {
+    path: string,
+}
+
+export async function GET(req: NextRequest) {
+    // const { path } = await req.json() as GetPayload;
+    const path = req.nextUrl.searchParams.get("path");
+    console.log('path in api:', path);
     try {
         await connectDB();
+        const res: PostPayload[] = await Post.find();
+        !!res && console.log(`get ${path} posts in success`);
+        const data = res.filter(item => item.path === path);
+
+        return NextResponse.json({ data });
+    } catch (err) {
+        return NextResponse.json({ err: err, });
+    }
+
+}
+
+export async function POST(req: NextRequest) {
+    const { title, path, content } = await req.json() as PostPayload;
+    console.log(title, path, content);
+    try {
+        await connectDB('myblog');
         await Post.create({
             title,
             path,

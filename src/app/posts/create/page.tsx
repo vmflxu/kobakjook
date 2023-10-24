@@ -8,23 +8,27 @@ import FolderDropDown from './_fragment/FolderDropDown';
 import { headers } from 'next/headers';
 
 const page = async () => {
-    // const host = headers().get("host");
-    // const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
-    // const endPoint = `${protocal}://${host}`;
-
-    // const res = await fetch(`${endPoint}/api/menu`, {
-    //     method: 'GET',
-    //     headers: {
-    //         'Accept': 'application/json',
-    //     }
-    // });
-    // const folderList: MenuBody = await res.json();
+    const host = headers().get("host");
+    const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
+    const endPoint = `${protocal}://${host}`;
 
     const actionHandler = async (formdata: FormData) => {
         "use server"
         console.log('action clicked');
         console.log('title:', formdata.get('title'));
         console.log('content:', formdata.get('content'));
+        try {
+            await fetch(`${endPoint}/api/post`,{
+                method: 'POST',
+                body: JSON.stringify({
+                    title: formdata.get('title'),
+                    path: "react",
+                    content: formdata.get('content'),
+                })
+            });
+        } catch (err) {
+            console.log('Post Error:',err)
+        }
     }
     return (
         <form action={actionHandler} className='mt-16'>
