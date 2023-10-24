@@ -8,6 +8,7 @@ import FolderDropDown from './_fragment/FolderDropDown';
 import { headers } from 'next/headers';
 import { getHost } from '@/lib/getHost';
 import StateTester from './_fragment/StateTester';
+import PostHashTag from './_fragment/PostHashTag';
 
 export type PostSchema = {
     isModified: boolean;
@@ -53,6 +54,7 @@ const page = async () => {
                 <FolderDropDown data={data} />
                 <PostTitle label='제목' />
                 <PostContent label='내용' />
+                <PostHashTag />
                 <StateTester />
                 {/* <UploadButton>업로드</UploadButton> */}
             </Flex.VCenter>

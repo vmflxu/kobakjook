@@ -9,7 +9,6 @@ import store from '@/store/store'
 
 const FolderDropDown = ({ data }: { data: MenuBody }) => {
     const [turn, setTurn] = useState<boolean>(false);
-    // const [selected, setSelected] = useState<string>('');
     const { path, setProperty } = store.useCreatePost();
 
     const toggleHandler = () => {
