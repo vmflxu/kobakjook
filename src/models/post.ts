@@ -17,7 +17,7 @@ const postSchema = new Schema({
     },
     tags: {
         type: [String],
-        required: [false],
+        required: true,
         maxLength: []
     },
     writeAt: {

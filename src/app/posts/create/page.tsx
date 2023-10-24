@@ -6,25 +6,34 @@ import PostTitle from './_fragment/PostTitle';
 import PostContent from './_fragment/PostContent';
 import FolderDropDown from './_fragment/FolderDropDown';
 import { headers } from 'next/headers';
+import { getHost } from '@/lib/getHost';
+import StateTester from './_fragment/StateTester';
 
+export type PostSchema = {
+    isModified: boolean;
+    tags: string[];
+    writeAt: number;
+    title: string;
+    content: string;
+    path: string;
+}
 const page = async () => {
-    const host = headers().get("host");
-    const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
-    const endPoint = `${protocal}://${host}`;
 
     const actionHandler = async (formdata: FormData) => {
         "use server"
-        console.log('action clicked');
-        console.log('title:', formdata.get('title'));
-        console.log('content:', formdata.get('content'));
+
+        const payload:PostSchema = {
+            title: formdata.get('title') as string,
+            content: formdata.get('content') as string,
+            path: 'react',
+            writeAt: Date.now(),
+            tags:[],
+            isModified: false,
+        }
         try {
-            await fetch(`${endPoint}/api/post`,{
+            await fetch(`${getHost()}/api/post`,{
                 method: 'POST',
-                body: JSON.stringify({
-                    title: formdata.get('title'),
-                    path: "react",
-                    content: formdata.get('content'),
-                })
+                body: JSON.stringify(payload),
             });
         } catch (err) {
             console.log('Post Error:',err)
@@ -36,6 +45,7 @@ const page = async () => {
                 {/* <FolderDropDown data={folderList} /> */}
                 <PostTitle label='제목' />
                 <PostContent label='내용' />
+                <StateTester />
                 <UploadButton>업로드</UploadButton>
             </Flex.VCenter>
         </form>
