@@ -29,12 +29,10 @@ export async function GET(req: NextRequest) {
     } catch (err) {
         return NextResponse.json({ err: err, });
     }
-
 }
 
 export async function POST(req: NextRequest) {
     const payload = await req.json() as PostSchema;
-    // console.log(title, path, content);
     console.log(payload);
     try {
         await connectDB('myblog');

@@ -14,6 +14,5 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ subMenu });
     } catch (err) {
         throw err;
-        return NextResponse.json({ err: err, });
     }
 }

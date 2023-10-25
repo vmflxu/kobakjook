@@ -7,13 +7,7 @@ type PageParams = {
     category: string,
 }
 
-const page = async ({
-    params,
-    searchParams
-}: {
-    params: PageParams,
-    searchParams: object
-}) => {
+const page = async ({ params, }: { params: PageParams, }) => {
     const res = await fetch(`${getHost()}/api/post?path=${params.category}`, {
         method: 'GET',
     });
