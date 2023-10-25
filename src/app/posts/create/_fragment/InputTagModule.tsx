@@ -7,7 +7,6 @@ const InputTagModule = () => {
     const { setTags } = store.useCreatePost();
     const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if(e.key === "Enter"){
-            console.log('엔터키 눌렸음');
             setTags(iptTag);
             setIptTag("");
         }
@@ -17,6 +16,7 @@ const InputTagModule = () => {
             value={iptTag}
             onChange={e => setIptTag(e.currentTarget.value)}
             onKeyDown={onKeyDownHandler}
+            className={'text-blue-900'}
         />
     )
 }

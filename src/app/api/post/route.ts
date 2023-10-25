@@ -1,3 +1,4 @@
+import { PostSchema } from "@/app/posts/create/page";
 import { connectDB } from "@/lib/mongo";
 import Post from "@/models/post";
 import mongoose from "mongoose";
@@ -32,15 +33,12 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-    const { title, path, content } = await req.json() as PostPayload;
-    console.log(title, path, content);
+    const payload = await req.json() as PostSchema;
+    // console.log(title, path, content);
+    console.log(payload);
     try {
         await connectDB('myblog');
-        await Post.create({
-            title,
-            path,
-            content,
-        })
+        await Post.create(payload);
 
         return NextResponse.json({ msg: "Create a Post is success" });
     } catch (err) {

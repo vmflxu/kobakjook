@@ -49,16 +49,16 @@ const page = async () => {
         }
     }
     return (
-        <form action={actionHandler} className='mt-16'>
-            <Flex.VCenter className={'gap-4 mx-auto px-16 w-[70%]'}>
+        // <form action={actionHandler} className='mt-16'>
+            <Flex.VCenter className={'gap-4 mx-auto px-16 w-[70%] mt-16'}>
                 <FolderDropDown data={data} />
                 <PostTitle label='제목' />
                 <PostContent label='내용' />
                 <PostHashTag />
-                <StateTester />
-                {/* <UploadButton>업로드</UploadButton> */}
+                {/* <StateTester /> */}
+                <UploadButton>업로드</UploadButton>
             </Flex.VCenter>
-        </form>
+        // </form>
     )
 }
 

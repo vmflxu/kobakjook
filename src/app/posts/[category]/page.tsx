@@ -24,7 +24,9 @@ const page = async ({
             {(!!data && data.length > 0) && data.map((item, idx) => {
                 return <div key={idx}>
                     {item.title}<br />
-                    {item.content}
+                    <div
+                    className={'flex flex-col mt-16 mx-auto w-[800px] min-h-[screen]'}
+                    dangerouslySetInnerHTML={{__html: item.content}}></div>
                 </div>
             })}
             {data.length === 0 && <Flex.Center className='h-screen'>No "{params.category}" Posts in Blog</Flex.Center>}

@@ -8,7 +8,7 @@ const FolderSelectDiv = ({
     data,
     turn
 }: {
-    onClick: (text: string) => void,
+    onClick: (path: string, name:string) => void,
     data: MenuBody,
     turn: boolean,
 }) => {
@@ -16,10 +16,10 @@ const FolderSelectDiv = ({
     return (
         <div className={menuStyle}>
             <div className='py-4'>
-                {data.subMenu.map(item => {
+                {data.subMenu.map((item,idx) => {
                     return <div
-                        key={item.order}
-                        onClick={e => onClick(item.title)}
+                        key={idx}
+                        onClick={e => onClick(item.path, item.title)}
                         className={'text-right h-fit cursor-pointer font-extralight hover:font-normal'}
                     >{item.title}</div>
                 })}
