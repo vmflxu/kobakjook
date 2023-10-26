@@ -29,6 +29,10 @@ const postSchema = new Schema({
         type: Boolean,
         required: true,
     },
+    visit : {
+        type: Number,
+        required: true,
+    }
 });
 
 const Post = mongoose.models.Post || mongoose.model("Post", postSchema);

@@ -22,7 +22,7 @@ const HomeNav = async () => {
     const data: MenuBody = await res.json();
 
     return (
-        <nav className='flex flex-col w-full mx-auto h-full flex-1 items-center'>
+        <nav className='flex flex-col w-full mx-auto h-full flex-1 items-center text-white'>
             {
                 routes.map(item => {
                     return (

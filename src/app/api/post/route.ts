@@ -1,4 +1,4 @@
-import { PostSchema } from "@/app/posts/create/page";
+import { PostSchema, ResPostSchema } from "@/app/posts/create/page";
 import { connectDB } from "@/lib/mongo";
 import Post from "@/models/post";
 import mongoose from "mongoose";
@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
     console.log('path in api:', path);
     try {
         await connectDB();
-        const res: PostPayload[] = await Post.find();
+        const res: ResPostSchema[] = await Post.find();
         !!res && console.log(`get ${path} posts in success`);
         const data = res.filter(item => item.path === path);
 
@@ -33,7 +33,9 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
     const payload = await req.json() as PostSchema;
+    console.log('******');
     console.log(payload);
+    console.log('******');
     try {
         await connectDB('myblog');
         await Post.create(payload);

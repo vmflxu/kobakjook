@@ -1,12 +1,12 @@
 import React from 'react'
 import { Flex } from '../style/Flex'
 import Image from 'next/image'
-// import profile from '#/profile/JYP.png'
+import profile from '#/profile/bg_header.jpg'
 
 const Introduce = () => {
     return (
         <Flex.HStack className='w-full px-8 gap-4 mt-8 justify-between items-center'>
-            <div className='aspect-square w-fit'>
+            <div className='aspect-square w-fit h-fit'>
                 <div className={'w-[80px] h-[80px] bg-gray-300 rounded-full'}></div>
                 {/* <Image
                     src={profile}

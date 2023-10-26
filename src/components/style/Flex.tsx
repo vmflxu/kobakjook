@@ -45,7 +45,7 @@ const HCenter = <T extends React.ElementType = "div">({
 }: FlexStyleProps<T>) => {
     const TagName = as ?? "div";
     const combination = twMerge(
-        "flex flex-col items-center",
+        "flex flex-row justify-center",
         className
     );
     return (
@@ -60,7 +60,7 @@ const VCenter = <T extends React.ElementType = "div">({
 }: FlexStyleProps<T>) => {
     const TagName = as ?? "div";
     const combination = twMerge(
-        "flex flex-col items-center",
+        "flex flex-col justify-center",
         className
     );
     return (

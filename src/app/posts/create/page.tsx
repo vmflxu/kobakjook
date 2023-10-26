@@ -1,14 +1,15 @@
 import { Flex } from '@/components/style/Flex'
 import React from 'react'
 import { MenuBody } from '@/components/header/HomeNav';
-import UploadButton from './_fragment/UploadButton';
-import PostTitle from './_fragment/PostTitle';
-import PostContent from './_fragment/PostContent';
-import FolderDropDown from './_fragment/FolderDropDown';
+import UploadButton from './_fragments/UploadButton';
+import PostTitle from './_fragments/PostTitle';
+import PostContent from './_fragments/PostContent';
+import FolderDropDown from './_fragments/FolderDropDown';
 import { headers } from 'next/headers';
 import { getHost } from '@/lib/getHost';
-import StateTester from './_fragment/StateTester';
-import PostHashTag from './_fragment/PostHashTag';
+import StateTester from './_fragments/StateTester';
+import PostHashTag from './_fragments/PostHashTag';
+import { ObjectId } from 'mongodb';
 
 export type PostSchema = {
     isModified: boolean;
@@ -17,7 +18,11 @@ export type PostSchema = {
     title: string;
     content: string;
     path: string;
+    visit: number;
 }
+export type ResPostSchema = {
+    _id: string;
+} & PostSchema;
 const page = async () => {
 
     const res = await fetch(`${getHost()}/api/menu`, {
@@ -38,6 +43,7 @@ const page = async () => {
             writeAt: Date.now(),
             tags:[],
             isModified: false,
+            visit:0,
         }
         try {
             await fetch(`${getHost()}/api/post`,{

@@ -6,9 +6,9 @@ export type CreatePost = {
     setTags: (payload:string) => void,
     deleteTag: (payload:string) => void,
     initState : () => void,
-} & PostSchema;
+} & Omit<PostSchema,"visit">;
 
-const initialState: PostSchema = {
+const initialState: Omit<PostSchema,"visit"> = {
     title: '',
     path: '',
     content: '',

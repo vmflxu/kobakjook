@@ -27,7 +27,7 @@ const SubMenuTrigger = ({ data, children }: { data: RouteInform, children: React
         if (parsedPath[0] === parsedDataPath) {
             setColor(textColor.selected);
         } else {
-            setColor(textColor.normal);
+            setColor(textColor.white);
         }
     }, [pathName]);
 

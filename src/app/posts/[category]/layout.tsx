@@ -1,11 +1,13 @@
+import { Flex } from "@/components/style/Flex"
+
 export default async function PostsLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <div>
+    <Flex.HCenter className={'w-full'}>
         {children}
-    </div>
+    </Flex.HCenter>
   )
 }

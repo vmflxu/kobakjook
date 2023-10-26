@@ -18,6 +18,7 @@ const UploadButton = ({ children }: { children: React.ReactNode }) => {
             tags,
             writeAt: Date.now(),
             isModified: false,
+            visit:0,
         };
         try {
             const res = await fetch(`${host}/api/post`,{

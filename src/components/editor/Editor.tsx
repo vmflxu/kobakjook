@@ -64,22 +64,22 @@ const Editor = ({
 
     useEffect(() => {
         setProperty({
-            content : editorHTML,
+            content: editorHTML,
         });
     }, [editorHTML]);
 
     return (
-        <div className='bg-white text-black overflow-hidden h-[742px]'>
-        <ReactQuill
-            placeholder={placeholder}
-            // ref={quillRef}
-            // value={value}
-            onChange={onChangeHandler}
-            theme='snow'
-            modules={modules}
-            formats={formats}
-            className={'w-full text-black bg-white h-[700px]'}
-        />
+        <div className='bg-white text-black overflow-hidden h-[642px]'>
+            <ReactQuill
+                placeholder={placeholder}
+                // ref={quillRef}
+                // value={value}
+                onChange={onChangeHandler}
+                theme='snow'
+                modules={modules}
+                formats={formats}
+                className={'w-full text-black bg-white h-[600px]'}
+            />
         </div>
     );
 }
