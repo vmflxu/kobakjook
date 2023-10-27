@@ -19,6 +19,7 @@ const page = async ({ params, }: { params: { id: string }, }) => {
      * 결과적으로 단점때문에 오히려 더 느린게 되어 버린다.
      * 댓글작성에는 부적절해 보이고, 
      * 새로고침을 안할 방법 떠오를 때까지는 그냥 RCC로 구성하고 클라에서 통신하는 것이 좋아보임
+     * revaildateTag()를 사용해서 바뀌는 부분만 새로고침되게 만들면 될듯.
      * @param formdata 
      */
     const actionHandler = (formdata: FormData) => {
@@ -28,11 +29,12 @@ const page = async ({ params, }: { params: { id: string }, }) => {
         <Flex.VStack className='w-full min-h-screen h-fit pb-24 items-center text-black'>
             <ArticleTitle title={data.title} date={data.writeAt} />
             <ArticleContent content={data.content} tags={data.tags} />
-            <ErrorBoundary fallback={<div>통신오류 댓글을 가져오지 못했습니다.</div>}>
-                <Suspense fallback={<p>로딩중입니다....</p>}>
+            <ArticleComments id={data._id}/>
+            {/* <ErrorBoundary fallback={<div>Error is Occured.</div>}>
+                <Suspense fallback={<p>Loading....</p>}>
                     <ArticleComments promise={a} />
                 </Suspense>
-            </ErrorBoundary>
+            </ErrorBoundary> */}
             {/* <Flex.HStack as='form' action={actionHandler}></Flex.HStack> */}
         </Flex.VStack>
     );

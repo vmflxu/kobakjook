@@ -1,4 +1,14 @@
+import { ObjectId } from "mongodb";
 import mongoose, { Schema } from "mongoose";
+
+export type CommentSchemaType = {
+    targetId: string,
+    comment: string,
+    writeAt: number,
+    writter: string,
+    modified: boolean,
+    password: string,
+}
 
 const commentSchema = new Schema({
     targetId: {
@@ -16,7 +26,7 @@ const commentSchema = new Schema({
         required: true,
         trim: true,
     },
-    isModified: {
+    modified: {
         type: Boolean,
         required: true,
     },

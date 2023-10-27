@@ -1,20 +1,41 @@
-'use client'
 import { Flex } from '@/components/style/Flex'
-import React, { useEffect, useState } from 'react'
+import React, { useRef } from 'react'
 import WritterInfo from './WritterInfo'
 import CommentArea from './CommentArea'
 import useComment, { CommentInputSetState } from '@/hooks/useComment'
+import { actions } from '@/lib/actions/actions'
+import createComment from '@/lib/actions/createComment'
+import { revalidatePath } from 'next/cache'
 
-const CommentInputSet = () => {
-    const { comments, setCommentValue} = useComment();
-    useEffect(() => {
-        console.log(comments);
-    },[comments]);
+const CommentInputSet = ({ id }: { id: string }) => {
+    
+    // const { comments, setCommentValue } = useComment();
+    const actionHandler = async (formdata: FormData) => {
+        'use server'
+        formdata.append('targetId', id);
+        console.log('들어가기전 formdata:', formdata);
+        await createComment(formdata);
+        revalidatePath(`/article/${id}`);
+        // if(ref.current) {
+        //     ref.current.reset();
+        // }
+        
+        // await actions.comment.create(formdata);
+    }
     return (
-        <Flex.HStack className='justify-between text-sm gap-4 h-24'>
-            <WritterInfo comments={comments} setCommentValue={setCommentValue} />
+        <Flex.HStack
+            as='form'
+            // action={actions.comment.create}
+            // ref={ref}
+            action={actionHandler}
+            className='justify-between text-sm gap-4 h-24'
+        >
+            <WritterInfo />
             <CommentArea />
-            <button onClick={() => { }} className='w-[100px] h-full border text-slate-700 hover:text-white hover:bg-slate-600'>작성완료</button>
+            <button className='w-[100px] h-full border text-slate-700 hover:text-white hover:bg-slate-600'>작성완료</button>
+            {/* <WritterInfo comments={comments} setCommentValue={setCommentValue} /> */}
+            {/* <CommentArea comments={comments} setCommentValue={setCommentValue} /> */}
+
         </Flex.HStack>
     )
 }

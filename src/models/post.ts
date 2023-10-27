@@ -25,7 +25,7 @@ const postSchema = new Schema({
         required: true,
         trim: true,
     },
-    isModified: {
+    modified: {
         type: Boolean,
         required: true,
     },

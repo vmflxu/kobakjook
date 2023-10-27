@@ -4,7 +4,7 @@ export type FlexStyleProps<T extends React.ElementType> = {
     as?: T,
     className?: string,
     children?: React.ReactNode,
-} & React.ComponentPropsWithoutRef<T>
+} & React.ComponentPropsWithRef<T>
 // export type FlexDivProps = {
 //     as? : string,
 

@@ -12,7 +12,7 @@ import PostHashTag from './_fragments/PostHashTag';
 import { ObjectId } from 'mongodb';
 
 export type PostSchema = {
-    isModified: boolean;
+    modified: boolean;
     tags: string[];
     writeAt: number;
     title: string;
@@ -42,7 +42,7 @@ const page = async () => {
             path: 'react',
             writeAt: Date.now(),
             tags:[],
-            isModified: false,
+            modified: false,
             visit:0,
         }
         try {

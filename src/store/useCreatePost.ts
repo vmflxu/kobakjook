@@ -12,7 +12,7 @@ const initialState: Omit<PostSchema,"visit"> = {
     title: '',
     path: '',
     content: '',
-    isModified: false,
+    modified: false,
     writeAt: 0,
     tags: [],
 };
@@ -33,7 +33,7 @@ const useCreatePost = create<CreatePost>(
             title:'',
             path:'',
             content:'',
-            isModified:false,
+            modified:false,
             writeAt:0,
             tags:[],
         }),
