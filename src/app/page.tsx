@@ -8,8 +8,8 @@ type TempData = {
 export default async function MainSection() {
   return (
     <>
-      <Flex.Center as='article' className="min-h-screen">
-        <div className={'font-bold text-3xl'}>블로그 메인 페이지 컨텐츠</div>
+      <Flex.Center as='article' className="min-h-screen text-black">
+        <div className={'font-bold text-3xl'}>main page</div>
       </Flex.Center>
     </>
   )

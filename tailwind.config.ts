@@ -12,6 +12,8 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'headerBg': "url('https://images.unsplash.com/photo-1417325384643-aac51acc9e5d?q=75&fm=jpg')",
+        // 'headerBg': "url('/assets/images/bg_header.jpg')",
       },
       fontFamily: {
         Pretendard: ["Pretendard Variable"],

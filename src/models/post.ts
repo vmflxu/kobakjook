@@ -15,6 +15,24 @@ const postSchema = new Schema({
         trim: true,
         minLength: [2, "Must be larger than 2"],
     },
+    tags: {
+        type: [String],
+        required: true,
+        maxLength: []
+    },
+    writeAt: {
+        type: Number,
+        required: true,
+        trim: true,
+    },
+    modified: {
+        type: Boolean,
+        required: true,
+    },
+    visit : {
+        type: Number,
+        required: true,
+    }
 });
 
 const Post = mongoose.models.Post || mongoose.model("Post", postSchema);

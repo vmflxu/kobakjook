@@ -7,12 +7,12 @@ import { twMerge } from 'tailwind-merge'
 
 const SubMenu = ({ menu }: { menu: RouteInform }) => {
     const pathName = usePathname();
-    const [style, setStyle] = useState<string>('text-normal text-black');
+    const [style, setStyle] = useState<string>('text-normal text-white');
 
     useEffect(() => {
         const parsedPath = pathName.split('/').slice(1)[1];
         const parsedDataPath = menu.path.replace('/', '');
-        const subMenuStyle = JSON.stringify(parsedPath) === JSON.stringify(parsedDataPath) ? 'text-red-700' : 'text-black';
+        const subMenuStyle = JSON.stringify(parsedPath) === JSON.stringify(parsedDataPath) ? 'text-red-700' : 'text-white';
         const mergedStyle = twMerge('text-normal hover:text-blue-500', subMenuStyle);
         setStyle(mergedStyle);
     }, [pathName]);

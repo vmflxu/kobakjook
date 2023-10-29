@@ -1,40 +1,70 @@
 import { Flex } from '@/components/style/Flex'
 import React from 'react'
 import { MenuBody } from '@/components/header/HomeNav';
-import UploadButton from './_fragment/UploadButton';
-import PostTitle from './_fragment/PostTitle';
-import PostContent from './_fragment/PostContent';
-import FolderDropDown from './_fragment/FolderDropDown';
+import UploadButton from './_fragments/UploadButton';
+import PostTitle from './_fragments/PostTitle';
+import PostContent from './_fragments/PostContent';
+import FolderDropDown from './_fragments/FolderDropDown';
 import { headers } from 'next/headers';
+import { getHost } from '@/lib/getHost';
+import StateTester from './_fragments/StateTester';
+import PostHashTag from './_fragments/PostHashTag';
+import { ObjectId } from 'mongodb';
 
+export type PostSchema = {
+    modified: boolean;
+    tags: string[];
+    writeAt: number;
+    title: string;
+    content: string;
+    path: string;
+    visit: number;
+}
+export type ResPostSchema = {
+    _id: string;
+} & PostSchema;
 const page = async () => {
-    // const host = headers().get("host");
-    // const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
-    // const endPoint = `${protocal}://${host}`;
 
-    // const res = await fetch(`${endPoint}/api/menu`, {
-    //     method: 'GET',
-    //     headers: {
-    //         'Accept': 'application/json',
-    //     }
-    // });
-    // const folderList: MenuBody = await res.json();
+    const res = await fetch(`${getHost()}/api/menu`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+        }
+    });
+    const data: MenuBody = await res.json();
 
     const actionHandler = async (formdata: FormData) => {
         "use server"
-        console.log('action clicked');
-        console.log('title:', formdata.get('title'));
-        console.log('content:', formdata.get('content'));
+
+        const payload:PostSchema = {
+            title: formdata.get('title') as string,
+            content: formdata.get('content') as string,
+            path: 'react',
+            writeAt: Date.now(),
+            tags:[],
+            modified: false,
+            visit:0,
+        }
+        try {
+            await fetch(`${getHost()}/api/post`,{
+                method: 'POST',
+                body: JSON.stringify(payload),
+            });
+        } catch (err) {
+            console.log('Post Error:',err)
+        }
     }
     return (
-        <form action={actionHandler} className='mt-16'>
-            <Flex.VCenter className={'gap-4 mx-auto px-16 w-[70%]'}>
-                {/* <FolderDropDown data={folderList} /> */}
+        // <form action={actionHandler} className='mt-16'>
+            <Flex.VCenter className={'gap-4 mx-auto px-16 w-[70%] mt-16'}>
+                <FolderDropDown data={data} />
                 <PostTitle label='제목' />
                 <PostContent label='내용' />
+                <PostHashTag />
+                {/* <StateTester /> */}
                 <UploadButton>업로드</UploadButton>
             </Flex.VCenter>
-        </form>
+        // </form>
     )
 }
 

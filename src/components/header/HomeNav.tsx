@@ -6,20 +6,14 @@ import MenuContainer from './MenuContainer';
 import MenuTitle from './MenuTitle';
 import SubMenuContainer from './SubMenuContainer';
 import SubMenu from './SubMenu';
-import Condd from './Condd';
+import { getHost } from '@/lib/getHost';
 
 export type MenuBody = {
     subMenu: RouteInform[],
 }
 
 const HomeNav = async () => {
-    const host = headers().get("host");
-    const protocal = process?.env.NODE_ENV === "development" ? "http" : "https";
-    // const protocal = "https";
-    // proptocl
-    const endPoint = `https://${host}`;
-
-    const res = await fetch(`${endPoint}/api/menu`, {
+    const res = await fetch(`${getHost()}/api/menu`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -28,30 +22,28 @@ const HomeNav = async () => {
     const data: MenuBody = await res.json();
 
     return (
-        <nav className='flex flex-col w-full mx-auto h-full items-center min-h-screen'>
-            <Condd data={data} />
+        <nav className='flex flex-col w-full mx-auto h-full flex-1 items-center text-white'>
             {
-                // routes.map(item => {
-                //     return (
-                //         <MenuContainer key={item.title}>
-                //             <div className='w-full text-left py-1 group cursor-pointer'>
-                //                 <MenuTitle data={item} />
-                //                 {item.title === 'Posts' && <SubMenuContainer route={item.path.replace('/', '')}>
-                //                     {!!data && data.subMenu.map(sub => {
-                //                         return (
-                //                             <Link href={'/posts' + sub.path} key={sub.path}>
-                //                                 <SubMenu menu={sub} />
-                //                             </Link>
-                //                         )
-                //                     })}
-                //                 </SubMenuContainer>}
+                routes.map(item => {
+                    return (
+                        <MenuContainer key={item.title}>
+                            <div className='w-full text-left py-1 group cursor-pointer'>
+                                <MenuTitle data={item} />
+                                {item.title === 'Posts' && <SubMenuContainer route={item.path.replace('/', '')}>
+                                    {!!data && data.subMenu.map(sub => {
+                                        return (
+                                            <Link href={'/posts' + sub.path} key={sub.path}>
+                                                <SubMenu menu={sub} />
+                                            </Link>
+                                        )
+                                    })}
+                                </SubMenuContainer>}
 
-                //             </div>
-                //         </MenuContainer>
-                //     );
-                // })
+                            </div>
+                        </MenuContainer>
+                    );
+                })
             }
-            {/* <div>{temp}</div> */}
         </nav>
     )
 }
