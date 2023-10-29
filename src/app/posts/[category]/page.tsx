@@ -27,7 +27,7 @@ const page = async ({ params, }: { params: PageParams, }) => {
                     />
                 })}
             </Flex.HStack>
-            {data.length === 0 && <Flex.Center className='h-screen'>No "{params.category}" Posts in Blog</Flex.Center>}
+            {data.length === 0 && <Flex.Center className='h-screen'>{`No "${params.category}" Posts in Blog`}</Flex.Center>}
         </Flex.HCenter>
     )
 }
