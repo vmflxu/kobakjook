@@ -15,7 +15,7 @@ const CommentList = async ({ id }: { id: string }) => {
     <Flex.VStack className='mt-8 gap-4'>
       {data.map(item => {
         return (
-        <Flex.HStack className='gap-4 items-baseline'>
+        <Flex.HStack key={item._id} className='gap-4 items-baseline'>
           <div className='w-[150px] bg-green-400'>{item.writter}</div>
           <div className='flex flex-1 bg-pink-500 whitespace-pre-line'>{item.comment}</div>
           <div className='w-[100px] text-sm bg-blue-300 text-right'>{new Date(item.writeAt).toLocaleTimeString()}</div>
