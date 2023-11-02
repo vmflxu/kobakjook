@@ -19,18 +19,16 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className='flex flex-row gap-0 font-Pretendard font-normal text-lg text-white'>
-        <header className={`flex flex-col w-96 h-screen items-center gap-8 flex-none top-0 sticky`} style={{backgroundImage: `url('${src}')`, backgroundRepeat: 'no-repeat', objectFit:'cover', backgroundPositionX: '50%'}}>
+        <header className={`flex flex-col w-96 h-screen items-center gap-8 flex-none top-0 sticky`} style={{ backgroundImage: `url('${src}')`, backgroundRepeat: 'no-repeat', objectFit: 'cover', backgroundPositionX: '50%' }}>
           <Introduce />
           <HomeNav />
         </header>
         <main className='w-full h-fit'>
           {children}
         </main>
-        <div className={'fixed right-8 bottom-8 overflow-hidden rounded-2xl bg-blue-500 px-8 py-4 text-white font-bold hover:bg-slate-700 cursor-pointer'}>
-          <Link href='/posts/create'>
-            {"글 작성"}
-          </Link>
-        </div>
+        <Link href='/writepage' className={'fixed right-8 bottom-8 overflow-hidden rounded-2xl bg-blue-500 px-8 py-4 text-white font-bold hover:bg-slate-700 cursor-pointer'}>
+          {"글 작성"}
+        </Link>
       </body>
     </html >
   )

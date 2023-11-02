@@ -17,7 +17,7 @@ const UploadButton = ({ children }: { children: React.ReactNode }) => {
             content,
             tags,
             writeAt: Date.now(),
-            isModified: false,
+            modified: false,
             visit:0,
         };
         try {

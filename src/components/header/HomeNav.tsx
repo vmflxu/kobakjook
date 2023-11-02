@@ -38,7 +38,6 @@ const HomeNav = async () => {
                                         )
                                     })}
                                 </SubMenuContainer>}
-
                             </div>
                         </MenuContainer>
                     );
