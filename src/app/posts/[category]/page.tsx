@@ -4,7 +4,7 @@ import { getHost } from '@/lib/getHost';
 import React from 'react'
 import PostCard from './_fragments/PostCard';
 import SearchBox from './_fragments/SearchBox';
-import { ResPostSchema } from '../create/page';
+import { ResPostSchema } from '@/app/writepage/page';
 
 type PageParams = {
     category: string,
