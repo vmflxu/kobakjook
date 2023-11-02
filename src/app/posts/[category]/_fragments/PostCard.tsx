@@ -1,9 +1,9 @@
 'use client'
 
 import { Flex } from '@/components/style/Flex';
-import React, { useEffect, useRef, useState } from 'react'
-import { ResPostSchema } from '../../create/page';
+import React from 'react'
 import { useRouter, useSearchParams } from 'next/navigation';
+import { ResPostSchema } from '@/app/writepage/page';
 
 export type PostCardProps = {
     data: ResPostSchema
