@@ -3,10 +3,11 @@
 import Comment, { CommentSchemaType } from "@/models/comment";
 import { connectDB } from "../mongo";
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 const createComment = async (formData: FormData) => {
+    'use server'
     // Body 세팅
-    console.log('액션 들어오는 것 성공, 폼데이터:',formData);
     const writter = formData.get('writter') as string ?? 'Anonymous';
     const password = formData.get('password') as string ?? process.env.BASIC_PW;
     const comment = formData.get('comment') as string;
@@ -29,7 +30,6 @@ const createComment = async (formData: FormData) => {
         await Comment.create(payload);
 
         return NextResponse.json({msg: 'Create a Comment is success'})
-        
     } catch (err: any) {
         console.log('error is occured : ', err.message);
         return NextResponse.json({
@@ -41,7 +41,5 @@ const createComment = async (formData: FormData) => {
 
 
 }
-
-// export default comment;
 
 export default createComment;

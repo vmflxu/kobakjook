@@ -1,4 +1,4 @@
-import { PostSchema, ResPostSchema } from "@/app/posts/create/page";
+import { PostSchema, ResPostSchema } from "@/app/writepage/page";
 import { connectDB } from "@/lib/mongo";
 import Post from "@/models/post";
 import mongoose from "mongoose";

@@ -10,8 +10,8 @@ import { ResPostSchema } from '@/app/writepage/page';
 const page = async ({ params, }: { params: { id: string }, }) => {
     const res = await fetch(`${getHost()}/api/article?id=${params.id}`);
 
-    const a = res.json();
-    const data = (await a).data as ResPostSchema;
+    const result = res.json();
+    const data = (await result).data as ResPostSchema;
     return (
         <Flex.VStack className='w-full min-h-screen h-fit pb-24 items-center text-black'>
             <ArticleTitle title={data.title} date={data.writeAt} />
