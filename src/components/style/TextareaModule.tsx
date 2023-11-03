@@ -1,5 +1,5 @@
 'use client'
-import { PostSchema } from '@/app/posts/create/page'
+import { PostSchema } from '@/app/writepage/page';
 import store from '@/store/store'
 import React from 'react'
 
