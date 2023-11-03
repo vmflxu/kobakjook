@@ -1,4 +1,4 @@
-import { PostSchema } from "@/app/posts/create/page";
+import { PostSchema } from "@/app/writepage/page";
 import { create } from "zustand";
 
 export type CreatePost = {

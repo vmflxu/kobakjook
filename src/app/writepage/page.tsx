@@ -5,11 +5,8 @@ import UploadButton from './_fragments/UploadButton';
 import PostTitle from './_fragments/PostTitle';
 import PostContent from './_fragments/PostContent';
 import FolderDropDown from './_fragments/FolderDropDown';
-import { headers } from 'next/headers';
 import { getHost } from '@/lib/getHost';
-import StateTester from './_fragments/StateTester';
 import PostHashTag from './_fragments/PostHashTag';
-import { ObjectId } from 'mongodb';
 
 export type PostSchema = {
     modified: boolean;
