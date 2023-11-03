@@ -1,4 +1,4 @@
-import { ResPostSchema } from "@/app/posts/create/page";
+import { ResPostSchema } from "@/app/writepage/page";
 import { connectDB } from "@/lib/mongo";
 import Post from "@/models/post";
 import { NextRequest, NextResponse } from "next/server";

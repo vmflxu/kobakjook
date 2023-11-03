@@ -16,17 +16,10 @@ const CommentInputSet = ({ id }: { id: string }) => {
         console.log('들어가기전 formdata:', formdata);
         await createComment(formdata);
         revalidatePath(`/article/${id}`);
-        // if(ref.current) {
-        //     ref.current.reset();
-        // }
-        
-        // await actions.comment.create(formdata);
     }
     return (
         <Flex.HStack
             as='form'
-            // action={actions.comment.create}
-            // ref={ref}
             action={actionHandler}
             className='justify-between text-sm gap-4 h-24'
         >

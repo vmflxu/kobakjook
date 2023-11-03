@@ -10,6 +10,10 @@ export type CommentSchemaType = {
     password: string,
 }
 
+export type ResCommentSchemaType = {
+    _id: string,
+} & CommentSchemaType;
+
 const commentSchema = new Schema({
     targetId: {
         type: String,

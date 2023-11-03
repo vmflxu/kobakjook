@@ -8,7 +8,7 @@ const TagListViewer = () => {
     // key uuid로 바꿔줄것
     return (
         <div>
-            {tags.map((item, idx) => {
+            {tags.map((item:string, idx:number) => {
                 return <span key={idx}>{`#${item}`}</span>
             })}
         </div>

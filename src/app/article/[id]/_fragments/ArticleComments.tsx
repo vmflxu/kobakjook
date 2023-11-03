@@ -7,16 +7,11 @@ export type ArticleCommentsProps = {
   promise: Promise<any>;
 }
 
-// const ArticleComments = ({promise}: ArticleCommentsProps) => {
-// const data = use(promise);
-// useEffect(()=>{
-//    console.log(data); 
-// },[]);
 const ArticleComments = ({id}:{id:string}) => {
   return (
     <Flex.VStack className='w-[1200px] h-fit'>
       <CommentInputSet id={id}/>
-      <CommentList />
+      <CommentList id={id}/>
     </Flex.VStack>
   )
 }

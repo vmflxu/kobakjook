@@ -11,17 +11,17 @@ const UploadButton = ({ children }: { children: React.ReactNode }) => {
 
     // router.basePath
     const uploadHandler = async () => {
-        const payload: PostSchema = {
+        const payload:PostSchema = {
             title,
             path,
             content,
             tags,
             writeAt: Date.now(),
             modified: false,
-            visit: 0,
+            visit:0,
         };
         try {
-            const res = await fetch(`${host}/api/post`, {
+            const res = await fetch(`${host}/api/post`,{
                 method: 'POST',
                 body: JSON.stringify(payload),
             });

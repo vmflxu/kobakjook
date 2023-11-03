@@ -1,8 +1,7 @@
 import { Flex } from '@/components/style/Flex'
-import InputModule from '@/components/style/InputModule'
 import React from 'react'
-import InputTagModule from './InputTagModule'
 import TagListViewer from './TagListViewer'
+import InputTagModule from './InputTagModule'
 
 const PostHashTag = () => {
     return (
