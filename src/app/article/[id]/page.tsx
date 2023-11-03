@@ -16,7 +16,7 @@ const page = async ({ params, }: { params: { id: string }, }) => {
         <Flex.VStack className='w-full min-h-screen h-fit pb-24 items-center text-black'>
             <ArticleTitle title={data.title} date={data.writeAt} />
             <ArticleContent content={data.content} tags={data.tags} />
-            <ArticleComments id={data._id} />
+            <ArticleComments id={JSON.parse(JSON.stringify(data._id))} />
             {/* <ErrorBoundary fallback={<div>Error is Occured.</div>}>
                 <Suspense fallback={<p>Loading....</p>}>
                     <ArticleComments promise={a} />

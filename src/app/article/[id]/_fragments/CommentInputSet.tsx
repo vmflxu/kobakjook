@@ -1,3 +1,4 @@
+'use client'
 import { Flex } from '@/components/style/Flex'
 import React, { useRef } from 'react'
 import WritterInfo from './WritterInfo'
@@ -10,17 +11,19 @@ import { revalidatePath } from 'next/cache'
 const CommentInputSet = ({ id }: { id: string }) => {
     
     // const { comments, setCommentValue } = useComment();
-    const actionHandler = async (formdata: FormData) => {
-        'use server'
-        formdata.append('targetId', id);
-        console.log('들어가기전 formdata:', formdata);
-        await createComment(formdata);
-        revalidatePath(`/article/${id}`);
-    }
+    // const actionHandler = async (formdata: FormData) => {
+    //     'use server'
+    //     formdata.append('targetId', id);
+    //     console.log('들어가기전 formdata:', formdata);
+    //     await createComment(formdata);
+    //     revalidatePath(`/article/${id}`);
+    // }
+    const createCommentWithId = createComment.bind(null, id);
     return (
         <Flex.HStack
             as='form'
-            action={actionHandler}
+            // action={actionHandler}
+            action={createCommentWithId}
             className='justify-between text-sm gap-4 h-24'
         >
             <WritterInfo />
