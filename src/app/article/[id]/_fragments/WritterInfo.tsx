@@ -4,7 +4,7 @@ import React from 'react'
 
 const WritterInfo = () => {
     return (
-        <Flex.VStack className='gap-2'>
+        <Flex.VStack className='gap-2 w-[100px]'>
             <Flex.VStack className='w-full'>
                 <label>작성자</label>
                 <input

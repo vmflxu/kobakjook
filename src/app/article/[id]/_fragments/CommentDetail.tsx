@@ -12,12 +12,7 @@ const CommentDetail = ({
 }) => {
 
     const time = new Date(item.writeAt);
-    const writted = {
-        year: time.getFullYear(),
-        month: time.getMonth(),
-        date: time.getDate(),
-    }
-    const dateString = `${time.getFullYear()}-${time.getMonth()+1}-${time.getDate()< 10 ? 0 : null}${time.getDate()}`;
+    const dateString = `${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate() < 10 ? 0 : null}${time.getDate()}`;
     const actionHandler = async (formData: FormData) => {
         'use server'
         formData.append('id', item._id);
@@ -25,20 +20,23 @@ const CommentDetail = ({
         await deleteComment(formData);
     }
     return (
-        <Flex.HStack
-            as='form'
-            action={actionHandler}
-            className='gap-4 items-baseline text-sm'
-        >
-            <div className='w-[150px]'>{item.writter}</div>
-            <div className='flex flex-1 whitespace-pre-line'>{item.comment}</div>
-            <Flex.VStack>
-            <div className='w-[100px] text-xs text-right text-gray-500'>{dateString}</div>
-            <div className='w-[100px] text-xs text-right text-gray-500'>{new Date(item.writeAt).toLocaleTimeString()}</div>
-            </Flex.VStack>
-            
-            <button className='w-fit h-fit rounded-md'>✕</button>
-        </Flex.HStack>
+        <>
+            <Flex.HBetween
+                as='form'
+                action={actionHandler}
+                className='gap-4 items-center text-sm lg:justify-normal lg:items-baseline'
+            >
+                <div className='w-[150px] font-semibold text-gray-600'>{item.writter}</div>
+                <div className='flex flex-1 whitespace-pre-line invisible w-0 h-0 lg:visible lg:w-full lg:h-fit'>{item.comment}</div>
+                <Flex.VStack>
+                    <div className='w-[100px] text-xs text-right text-gray-500'>{dateString}</div>
+                    <div className='w-[100px] text-xs text-right text-gray-500'>{new Date(item.writeAt).toLocaleTimeString()}</div>
+                </Flex.VStack>
+
+                <button className='w-fit h-fit rounded-md'>✕</button>
+            </Flex.HBetween>
+            <div className='flex flex-1 text-xs whitespace-pre-line visible w-full h-fit lg:invisible lg:w-0 lg:h-0'>{item.comment}</div>
+        </>
     )
 }
 
