@@ -15,7 +15,8 @@ const TextareaModule = ({ target }: { target: keyof Pick<PostSchema, 'content'> 
       value={content}
       onChange={onChangeHandler}
       name={target}
-      className={'border-cyan-500 min-h-[300px] h-fit text-slate-800 px-2'} />
+      className={'border-cyan-500 min-h-[300px] h-fit text-slate-800 px-2'}
+    />
   )
 }
 
