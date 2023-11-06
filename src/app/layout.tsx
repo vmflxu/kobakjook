@@ -19,7 +19,15 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className='flex flex-row gap-0 font-Pretendard font-normal text-lg text-white'>
-        <header className={`flex flex-col w-96 h-screen items-center gap-8 flex-none top-0 sticky`} style={{ backgroundImage: `url('${src}')`, backgroundRepeat: 'no-repeat', objectFit: 'cover', backgroundPositionX: '50%' }}>
+        <header
+          className={`flex flex-col w-0 h-screen items-center gap-8 flex-none top-0 sticky lg:w-96 invisible lg:visible`}
+          style={{
+            backgroundImage: `url('${src}')`,
+            backgroundRepeat: 'no-repeat',
+            objectFit: 'cover',
+            backgroundPositionX: '50%'
+          }}
+        >
           <Introduce />
           <HomeNav />
         </header>

@@ -10,6 +10,14 @@ const CommentDetail = ({
     item: ResCommentSchemaType,
     listId: string,
 }) => {
+
+    const time = new Date(item.writeAt);
+    const writted = {
+        year: time.getFullYear(),
+        month: time.getMonth(),
+        date: time.getDate(),
+    }
+    const dateString = `${time.getFullYear()}-${time.getMonth()+1}-${time.getDate()< 10 ? 0 : null}${time.getDate()}`;
     const actionHandler = async (formData: FormData) => {
         'use server'
         formData.append('id', item._id);
@@ -24,7 +32,11 @@ const CommentDetail = ({
         >
             <div className='w-[150px]'>{item.writter}</div>
             <div className='flex flex-1 whitespace-pre-line'>{item.comment}</div>
-            <div className='w-[100px] text-sm text-right text-gray-500'>{new Date(item.writeAt).toLocaleTimeString()}</div>
+            <Flex.VStack>
+            <div className='w-[100px] text-xs text-right text-gray-500'>{dateString}</div>
+            <div className='w-[100px] text-xs text-right text-gray-500'>{new Date(item.writeAt).toLocaleTimeString()}</div>
+            </Flex.VStack>
+            
             <button className='w-fit h-fit rounded-md'>✕</button>
         </Flex.HStack>
     )

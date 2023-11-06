@@ -6,14 +6,15 @@ import { useFormStatus } from 'react-dom';
 const CommentArea = () => {
     const cmtRef = useRef<HTMLTextAreaElement>(null);
     const { pending } = useFormStatus();
+
     useEffect(()=>{
-        console.log('송신중?',pending);
         if(!pending){
             if(!!cmtRef.current){
                 cmtRef.current.value = '';
             }
         }
-    },[pending])
+    },[pending]);
+    
     return (
         <textarea
             ref={cmtRef}

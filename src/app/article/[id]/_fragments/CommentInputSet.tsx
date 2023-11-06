@@ -7,16 +7,17 @@ import CommentButton from './CommentButton'
 
 const CommentInputSet = ({ id }: { id: string }) => {
     const createCommentWithId = createComment.bind(null, id);
+    
     return (
-        <Flex.HStack
+        <Flex.VStack
             as='form'
             action={createCommentWithId}
-            className='justify-between text-sm gap-4 h-24'
+            className='lg:justify-between text-sm gap-4 h-24 lg:flex-row'
         >
             <WritterInfo />
             <CommentArea />
             <CommentButton />
-        </Flex.HStack>
+        </Flex.VStack>
     )
 }
 
