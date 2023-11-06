@@ -11,7 +11,7 @@ const createComment = async (id:string,formData: FormData) => {
     const writter = formData.get('writter') as string ?? 'Anonymous';
     const password = formData.get('password') as string ?? process.env.BASIC_PW;
     const comment = formData.get('comment') as string;
-    const writeAt = Date.now();
+    const writeAt = Date.now()+9*60*60*1000;
     const targetId = id as string;
     // const targetId = formData.get('targetId') as string;
     // const targetId='123';
