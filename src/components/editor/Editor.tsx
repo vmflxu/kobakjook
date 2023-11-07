@@ -1,4 +1,5 @@
 'use client'
+import postImage from '@/lib/firebase/postImage';
 import store from '@/store/store';
 import React, { RefObject, useEffect, useMemo, useRef, useState } from 'react'
 import ReactQuill from 'react-quill';
@@ -35,8 +36,6 @@ export const formats = [
     "width",
 ];
 
-
-
 const Editor = ({
     placeholder,
 }: {
@@ -44,8 +43,34 @@ const Editor = ({
 }) => {
     const { setProperty } = store.useCreatePost();
     const [editorHTML, setEditorHTML] = useState<string>('');
-    const handleImage = () => {
+    const [imageList, setImageList] = useState<File[]>([]);
+    const quillRef = useRef<ReactQuill>(null);
+    const imageHandler = () => {
         // TODO: 이미지 업로드 로직 필요
+        const input = document.createElement('input');
+        input.setAttribute('type','file');
+        input.setAttribute('accept', 'image/*');
+        input.click();
+
+        input.addEventListener('change', async () => {
+            if(!!input.files){
+                // console.log('file', input.files[0]);
+                // const file = input.files[0];
+                // const editor = quillRef.current?.getEditor();
+                // const range = editor?.getSelection();
+                // editor?.insertEmbed(range?.index as number, 'image', file);
+                try {
+                    const file = input.files[0];
+                    setImageList(p => [...p,file]);
+                    const imageUrl = await postImage(file);
+                    const editor = quillRef.current?.getEditor();
+                    const range = editor?.getSelection();
+                    editor?.insertEmbed(range?.index as number, 'image', imageUrl);
+                } catch (err:any) {
+                    console.log(err.message);
+                }
+            }
+        })
     };
     const onChangeHandler = (html: string) => {
         setEditorHTML(html);
@@ -56,7 +81,7 @@ const Editor = ({
             toolbar: {
                 container: toolbarOptions,
                 handlers: {
-                    image: handleImage
+                    image: imageHandler,
                 }
             },
         }
@@ -72,7 +97,7 @@ const Editor = ({
         <div className='bg-white text-black overflow-hidden h-[642px]'>
             <ReactQuill
                 placeholder={placeholder}
-                // ref={quillRef}
+                ref={quillRef}
                 // value={value}
                 onChange={onChangeHandler}
                 theme='snow'

@@ -4,26 +4,6 @@ import HomeNav from '@/components/header/HomeNav';
 import Link from 'next/link';
 import Introduce from '@/components/header/Introduce';
 import HeaderBg from '#/profile/bg_header.jpg';
-import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
-import { getStorage, ref } from 'firebase/storage';
-
-const firebaseConfig = {
-  apiKey: process.env.FIREBASE_APIKEY,
-  authDomain: process.env.FIREBASE_DOMAIN,
-  projectId: process.env.FIREBASE_PJT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGE_ID,
-  appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASURE_ID,
-};
-
-// Initialize Firebase
-export const app = initializeApp(firebaseConfig);
-export const storage = getStorage(app);
-export const storageRef = {
-  article : ref(storage, 'article'),
-}
 
 export const metadata: Metadata = {
   title: 'practice',
