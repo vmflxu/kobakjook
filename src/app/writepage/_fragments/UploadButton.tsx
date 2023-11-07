@@ -25,7 +25,6 @@ const UploadButton = ({ children }: { children: React.ReactNode }) => {
                 method: 'POST',
                 body: JSON.stringify(payload),
             });
-            console.log(res.body);
         } catch (err) {
             console.log('Upload Error is occured.');
         }

@@ -45,7 +45,7 @@ const Editor = ({
     const { setProperty } = store.useCreatePost();
     const [editorHTML, setEditorHTML] = useState<string>('');
     const handleImage = () => {
-        console.log('이미지업로드 시도');
+        // TODO: 이미지 업로드 로직 필요
     };
     const onChangeHandler = (html: string) => {
         setEditorHTML(html);
