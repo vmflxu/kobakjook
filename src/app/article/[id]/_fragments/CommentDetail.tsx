@@ -24,18 +24,19 @@ const CommentDetail = ({
             <Flex.HBetween
                 as='form'
                 action={actionHandler}
-                className='gap-4 items-center text-sm lg:justify-normal lg:items-baseline'
+                className='gap-4 items-center text-sm xl:justify-normal xl:items-baseline'
             >
                 <div className='w-[150px] font-semibold text-gray-600'>{item.writter}</div>
-                <div className='flex flex-1 whitespace-pre-line invisible w-0 h-0 lg:visible lg:w-full lg:h-fit'>{item.comment}</div>
-                <Flex.VStack>
-                    <div className='w-[100px] text-xs text-right text-gray-500'>{dateString}</div>
-                    <div className='w-[100px] text-xs text-right text-gray-500'>{new Date(item.writeAt).toLocaleTimeString()}</div>
-                </Flex.VStack>
-
-                <button className='w-fit h-fit rounded-md'>✕</button>
+                <div className='hidden flex-1 whitespace-pre-line w-0 h-0 xl:flex xl:w-full xl:h-fit'>{item.comment}</div>
+                <Flex.HStack className='gap-4'>
+                    <Flex.VStack>
+                        <div className='w-[100px] text-xs text-right text-gray-500'>{dateString}</div>
+                        <div className='w-[100px] text-xs text-right text-gray-500'>{new Date(item.writeAt).toLocaleTimeString()}</div>
+                    </Flex.VStack>
+                    <button className='w-fit h-fit rounded-md'>✕</button>
+                </Flex.HStack>
             </Flex.HBetween>
-            <div className='flex flex-1 text-xs whitespace-pre-line visible w-full h-fit lg:invisible lg:w-0 lg:h-0'>{item.comment}</div>
+            <div className='flex flex-1 text-xs whitespace-pre-line w-full h-fit xl:hidden'>{item.comment}</div>
         </>
     )
 }

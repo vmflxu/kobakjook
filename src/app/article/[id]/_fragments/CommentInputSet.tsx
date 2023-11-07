@@ -12,9 +12,9 @@ const CommentInputSet = ({ id }: { id: string }) => {
         <Flex.VStack
             as='form'
             action={createCommentWithId}
-            className='h-fit lg:justify-between text-sm gap-4 lg:h-24 lg:flex-row w-full'
+            className='h-fit xl:justify-between text-sm gap-4 xl:h-24 xl:flex-row w-full'
         >
-            <Flex.HStack className='gap-4 w-full h-[100px] lg:h-full'>
+            <Flex.HStack className='gap-4 w-full h-[100px] xl:h-full'>
                 <WritterInfo />
                 <CommentArea />
             </Flex.HStack>

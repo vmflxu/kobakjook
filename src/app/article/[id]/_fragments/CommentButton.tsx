@@ -8,7 +8,7 @@ const CommentButton = () => {
     return (
         <button
             // disabled={pending}
-            className='w-full py-4 lg:w-[100px] lg:py-0 lg:h-full border text-slate-700 hover:text-white hover:bg-slate-600'
+            className='w-full py-4 xl:w-[100px] xl:py-0 xl:h-full border text-slate-700 hover:text-white hover:bg-slate-600'
         >
             {
                 pending

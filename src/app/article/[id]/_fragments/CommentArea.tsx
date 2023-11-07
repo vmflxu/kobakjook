@@ -19,7 +19,7 @@ const CommentArea = () => {
         <textarea
             ref={cmtRef}
             placeholder='댓글을 입력해주세요.'
-            className='w-full flex-1 h-full border pb-0 lg:pb-4 resize-none'
+            className='w-full flex-1 h-full border pb-0 xl:pb-4 resize-none'
             name='comment'
             maxLength={300}
             wrap='hard'
