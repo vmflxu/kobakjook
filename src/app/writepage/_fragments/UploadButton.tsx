@@ -2,9 +2,11 @@
 import store from '@/store/store'
 import React from 'react'
 import { PostSchema } from '../page';
+import { useRouter } from 'next/navigation';
 
 const UploadButton = ({ children }: { children: React.ReactNode }) => {
     const { title, path, content, tags } = store.useCreatePost();
+    const router = useRouter();
     // const pathname = usePathname();
     // const urlparams = useSearchParams();
     const host = window.location.origin;
@@ -28,6 +30,7 @@ const UploadButton = ({ children }: { children: React.ReactNode }) => {
         } catch (err) {
             console.log('Upload Error is occured.');
         }
+        router.back();
     }
     return (
         <button
