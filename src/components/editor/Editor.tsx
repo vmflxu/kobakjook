@@ -4,6 +4,7 @@ import store from '@/store/store';
 import React, { RefObject, useEffect, useMemo, useRef, useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+// import ImageResize from 'quill-image-resize'
 
 const toolbarOptions = [
     ["link", "image", "video"],
@@ -45,20 +46,14 @@ const Editor = ({
     const [editorHTML, setEditorHTML] = useState<string>('');
     const [imageList, setImageList] = useState<File[]>([]);
     const quillRef = useRef<ReactQuill>(null);
+
     const imageHandler = () => {
-        // TODO: 이미지 업로드 로직 필요
         const input = document.createElement('input');
         input.setAttribute('type','file');
         input.setAttribute('accept', 'image/*');
         input.click();
-
         input.addEventListener('change', async () => {
             if(!!input.files){
-                // console.log('file', input.files[0]);
-                // const file = input.files[0];
-                // const editor = quillRef.current?.getEditor();
-                // const range = editor?.getSelection();
-                // editor?.insertEmbed(range?.index as number, 'image', file);
                 try {
                     const file = input.files[0];
                     setImageList(p => [...p,file]);
@@ -66,7 +61,9 @@ const Editor = ({
                     console.log('imageUrl in Editor:', imageUrl);
                     const editor = quillRef.current?.getEditor();
                     const range = editor?.getSelection();
-                    editor?.insertEmbed(range?.index as number, 'image', imageUrl);
+                    const indexRange = range?.index as number;
+                    editor?.insertEmbed(indexRange, 'image', imageUrl);
+                    editor?.setSelection(indexRange+1, 0);
                 } catch (err:any) {
                     console.log(err.message);
                 }
@@ -85,6 +82,7 @@ const Editor = ({
                     image: imageHandler,
                 }
             },
+            
         }
     }, []);
 
