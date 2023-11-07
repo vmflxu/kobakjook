@@ -9,6 +9,7 @@ const WritterInfo = () => {
                 <label>작성자</label>
                 <input
                     type='text'
+                    aria-label='작성자'
                     name='writter'
                     className='w-full border'
                     required
@@ -18,6 +19,7 @@ const WritterInfo = () => {
                 <label>비밀번호</label>
                 <input
                     type='password'
+                    aria-label='비밀번호'
                     name='password'
                     className='w-full border'
                     required
