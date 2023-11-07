@@ -11,11 +11,11 @@ const ArticleTitle = ({ title, date }:ArticleTitleProps) => {
 
     return (
         <Flex.Center className='w-full h-[200px] bg-slate-700 text-white text-3xl'>
-            <Flex.HBetween className='w-[1200px] h-fit'>
-                <div>{title}</div>
-                <Flex.VStack className='text-right'>
-                <div className='text-sm font-light'>{writeAt[0].replaceAll('-','.')}</div>
-                <div className='text-sm font-light'>{writeAt[1]}</div>
+            <Flex.HBetween className='w-full h-fit px-16 xl:px-0 xl:max-w-[1200px]'>
+                <div className='w-fit'>{title}</div>
+                <Flex.VStack className='text-right w-fit'>
+                    <div className='text-sm font-light'>{writeAt[0].replaceAll('-', '.')}</div>
+                    <div className='text-sm font-light'>{writeAt[1]}</div>
                 </Flex.VStack>
             </Flex.HBetween>
         </Flex.Center>

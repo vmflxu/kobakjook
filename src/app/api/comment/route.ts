@@ -12,9 +12,6 @@ export const GET = async (req: NextRequest) => {
             targetId: id,
         });
         !!res && console.log(`get ${id} comment in success`);
-        // console.log((await res.json()).data);
-        // const data = await res.json();
-        // console.log(await res.json())
         return NextResponse.json({
             data: res,
         });

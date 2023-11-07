@@ -1,9 +1,12 @@
 'use client'
+import postImage from '@/lib/firebase/postImage';
 import store from '@/store/store';
+import { ImageResize } from 'quill-image-resize-module-ts';
 import React, { RefObject, useEffect, useMemo, useRef, useState } from 'react'
-import ReactQuill from 'react-quill';
+import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+Quill.register('modules/ImageResize', ImageResize);
 const toolbarOptions = [
     ["link", "image", "video"],
     [{ header: [1, 2, 3, false] }],
@@ -35,8 +38,6 @@ export const formats = [
     "width",
 ];
 
-
-
 const Editor = ({
     placeholder,
 }: {
@@ -44,8 +45,31 @@ const Editor = ({
 }) => {
     const { setProperty } = store.useCreatePost();
     const [editorHTML, setEditorHTML] = useState<string>('');
-    const handleImage = () => {
-        console.log('이미지업로드 시도');
+    const [imageList, setImageList] = useState<File[]>([]);
+    const quillRef = useRef<ReactQuill>(null);
+
+    const imageHandler = () => {
+        const input = document.createElement('input');
+        input.setAttribute('type','file');
+        input.setAttribute('accept', 'image/*');
+        input.click();
+        input.addEventListener('change', async () => {
+            if(!!input.files){
+                try {
+                    const file = input.files[0];
+                    setImageList(p => [...p,file]);
+                    const imageUrl = await postImage(file);
+                    console.log('imageUrl in Editor:', imageUrl);
+                    const editor = quillRef.current?.getEditor();
+                    const range = editor?.getSelection();
+                    const indexRange = range?.index as number;
+                    editor?.insertEmbed(indexRange, 'image', imageUrl);
+                    editor?.setSelection(indexRange+1, 0);
+                } catch (err:any) {
+                    console.log(err.message);
+                }
+            }
+        })
     };
     const onChangeHandler = (html: string) => {
         setEditorHTML(html);
@@ -56,9 +80,13 @@ const Editor = ({
             toolbar: {
                 container: toolbarOptions,
                 handlers: {
-                    image: handleImage
+                    image: imageHandler,
                 }
             },
+            ImageResize: {
+                parchment: Quill.import('parchment'),
+                modules: ['Resize', 'DisplaySize'],
+            }
         }
     }, []);
 
@@ -72,7 +100,7 @@ const Editor = ({
         <div className='bg-white text-black overflow-hidden h-[642px]'>
             <ReactQuill
                 placeholder={placeholder}
-                // ref={quillRef}
+                ref={quillRef}
                 // value={value}
                 onChange={onChangeHandler}
                 theme='snow'
