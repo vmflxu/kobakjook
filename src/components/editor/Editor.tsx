@@ -1,10 +1,12 @@
 'use client'
 import postImage from '@/lib/firebase/postImage';
 import store from '@/store/store';
+import { ImageResize } from 'quill-image-resize-module-ts';
 import React, { RefObject, useEffect, useMemo, useRef, useState } from 'react'
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+Quill.register('modules/ImageResize', ImageResize);
 const toolbarOptions = [
     ["link", "image", "video"],
     [{ header: [1, 2, 3, false] }],
@@ -81,6 +83,10 @@ const Editor = ({
                     image: imageHandler,
                 }
             },
+            ImageResize: {
+                parchment: Quill.import('parchment'),
+                modules: ['Resize', 'DisplaySize'],
+            }
         }
     }, []);
 
