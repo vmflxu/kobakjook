@@ -63,6 +63,7 @@ const Editor = ({
                     const file = input.files[0];
                     setImageList(p => [...p,file]);
                     const imageUrl = await postImage(file);
+                    console.log('imageUrl in Editor:', imageUrl);
                     const editor = quillRef.current?.getEditor();
                     const range = editor?.getSelection();
                     editor?.insertEmbed(range?.index as number, 'image', imageUrl);

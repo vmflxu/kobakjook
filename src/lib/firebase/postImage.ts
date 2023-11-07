@@ -11,12 +11,13 @@ const postImage = async (file: File) => {
         .then(snapshot => {
             console.log('Upload to Firestore is completed');
             getDownloadURL(articleRef).then(url => result = url);
+            console.log('imageUrl:',result);
         })
         .catch(err => {
             console.log(err.message)
             result = 'failed'
         });
-
+        console.log('result imageUrl:',result);
     return result;
 };
 
