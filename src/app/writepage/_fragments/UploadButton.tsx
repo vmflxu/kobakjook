@@ -27,7 +27,7 @@ const UploadButton = ({ children }: { children: React.ReactNode }) => {
                 method: 'POST',
                 body: JSON.stringify(payload),
             });
-            router.push(`/${path}`,{
+            router.push(`/posts/${path}`,{
                 scroll: true,
             });
         } catch (err) {
