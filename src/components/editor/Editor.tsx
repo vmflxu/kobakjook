@@ -4,7 +4,6 @@ import store from '@/store/store';
 import React, { RefObject, useEffect, useMemo, useRef, useState } from 'react'
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import imageResize from 'quill-image-resize'
 
 const toolbarOptions = [
     ["link", "image", "video"],
@@ -82,9 +81,6 @@ const Editor = ({
                     image: imageHandler,
                 }
             },
-            imageResize : {
-                parchment: Quill.import('parchment'),
-            }
         }
     }, []);
 
