@@ -20,7 +20,8 @@ const postImage = async (file: File) => {
             console.log(err.message)
             result = 'failed'
         });
-        console.log('result imageUrl:',result);
+    while(result === ''){}
+    console.log('result imageUrl:',result);
     return result;
 };
 
