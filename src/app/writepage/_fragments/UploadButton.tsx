@@ -27,10 +27,12 @@ const UploadButton = ({ children }: { children: React.ReactNode }) => {
                 method: 'POST',
                 body: JSON.stringify(payload),
             });
+            router.push(`/${path}`,{
+                scroll: true,
+            });
         } catch (err) {
             console.log('Upload Error is occured.');
         }
-        router.back();
     }
     return (
         <button
