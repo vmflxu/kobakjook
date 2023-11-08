@@ -17,16 +17,18 @@ const page = async ({ params, }: { params: PageParams, }) => {
     const data = (await res.json()).data as ResPostSchema[];
 
     return (
-        <Flex.HCenter className={'w-[1200px] h-fit flex-wrap gap-8 bg-blue-400'}>
+        <Flex.HCenter className={'w-[1200px] h-fit flex-wrap gap-8 text-black'}>
             <SearchBox />
-            <Flex.HStack className='w-full flex-wrap gap-10'>
+            <div className='grid grid-flow-row grid-cols-4 gap-10 w-full'>
+                {/* <Flex.HCenter className='w-full flex-wrap gap-10'> */}
                 {(!!data && data.length > 0) && data.map((item, idx) => {
                     return <PostCard
                         key={idx}
                         data={item}
                     />
                 })}
-            </Flex.HStack>
+                {/* </Flex.HCenter> */}
+            </div>
             {data.length === 0 && <Flex.Center className='h-screen'>{`No "${params.category}" Posts in Blog`}</Flex.Center>}
         </Flex.HCenter>
     )

@@ -30,27 +30,6 @@ const page = async () => {
     });
     const data: MenuBody = await res.json();
 
-    const actionHandler = async (formdata: FormData) => {
-        "use server"
-
-        const payload:PostSchema = {
-            title: formdata.get('title') as string,
-            content: formdata.get('content') as string,
-            path: 'react',
-            writeAt: Date.now(),
-            tags:[],
-            modified: false,
-            visit:0,
-        }
-        try {
-            await fetch(`${getHost()}/api/post`,{
-                method: 'POST',
-                body: JSON.stringify(payload),
-            });
-        } catch (err) {
-            console.log('Post Error:',err)
-        }
-    }
     return (
         // <form action={actionHandler} className='mt-16'>
             <Flex.VCenter className={'gap-4 mx-auto px-16 w-[70%] mt-16'}>
