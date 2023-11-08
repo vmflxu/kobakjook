@@ -45,7 +45,6 @@ const Editor = ({
 }) => {
     const { setProperty } = store.useCreatePost();
     const [editorHTML, setEditorHTML] = useState<string>('');
-    const [imageList, setImageList] = useState<File[]>([]);
     const quillRef = useRef<ReactQuill>(null);
 
     const imageHandler = () => {
@@ -57,7 +56,6 @@ const Editor = ({
             if(!!input.files){
                 try {
                     const file = input.files[0];
-                    setImageList(p => [...p,file]);
                     const imageUrl = await postImage(file);
                     console.log('imageUrl in Editor:', imageUrl);
                     const editor = quillRef.current?.getEditor();
@@ -101,7 +99,6 @@ const Editor = ({
             <ReactQuill
                 placeholder={placeholder}
                 ref={quillRef}
-                // value={value}
                 onChange={onChangeHandler}
                 theme='snow'
                 modules={modules}

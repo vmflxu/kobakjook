@@ -34,6 +34,7 @@ const postSchema = new Schema({
         required: true,
     }
 });
+postSchema.index({path:1})
 
 const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
 
