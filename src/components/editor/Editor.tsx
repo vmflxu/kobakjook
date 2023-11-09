@@ -56,6 +56,7 @@ const Editor = ({
             if(!!input.files){
                 try {
                     const file = input.files[0];
+                    input.setAttribute('alt',file.name);
                     const imageUrl = await postImage(file);
                     console.log('imageUrl in Editor:', imageUrl);
                     const editor = quillRef.current?.getEditor();
