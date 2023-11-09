@@ -62,8 +62,32 @@ const Editor = ({
                     const editor = quillRef.current?.getEditor();
                     const range = editor?.getSelection();
                     const indexRange = range?.index as number;
+<<<<<<< HEAD
                     editor?.insertEmbed(indexRange, 'image', imageUrl);
                     editor?.setSelection(indexRange+1, 0);
+=======
+                    // editor.formatLine(indexRange,range?.length as number,'alt',file.name);
+                    // const delta = editor.insertEmbed(indexRange, 'image', imageUrl);
+                    // editor.removeFormat(range?.index,range?.index+1);
+                    // editor.insertEmbed(indexRange, 'image', imageUrl);
+                    // const newOps = delta.ops?.map(op =>{
+                    //     const imgAttributes = {
+                    //         ...op.attributes,
+                    //         alt: file.name,
+                    //     };
+
+                    //     return {
+                    //         ...op,
+                    //         attributes : imgAttributes,
+                    //     }
+                    // });
+                    // delta.ops = newOps;
+                    // editor.updateContents(delta);
+                    editor.clipboard.dangerouslyPasteHTML(
+                        `<img src=${imageUrl} alt=${file.name} />`
+                    )
+                    editor?.setSelection(indexRange+1,0);
+>>>>>>> parent of e2d17fd (Fix: 복구)
                 } catch (err:any) {
                     console.log(err.message);
                 }
