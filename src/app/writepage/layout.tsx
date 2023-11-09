@@ -1,9 +1,9 @@
 import React from 'react'
 
-const layout = ({children}:{children:React.ReactDOM}) => {
+const WritepageLayout = ({children}:{children:React.ReactDOM}) => {
   return (
     <>{children}</>
   )
 }
 
-export default layout
+export default WritepageLayout
