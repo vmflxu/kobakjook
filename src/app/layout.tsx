@@ -4,6 +4,8 @@ import HomeNav from '@/components/header/HomeNav';
 import Link from 'next/link';
 import Introduce from '@/components/header/Introduce';
 import HeaderBg from '#/profile/bg_header.jpg';
+import { Flex } from '@/components/style/Flex';
+import EditButton from './writepage/_fragments/EditButton';
 
 export const metadata: Metadata = {
   title: 'practice',
@@ -16,7 +18,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const src = HeaderBg.src;
-  
+
   return (
     <html lang="en">
       <body className='flex flex-row gap-0 font-Pretendard font-normal text-lg text-white'>
@@ -31,13 +33,15 @@ export default async function RootLayout({
         >
           <Introduce />
           <HomeNav />
+          <Flex.Center className='w-full h-fit absolute bottom-16'>
+            <Link href='/writepage'>
+              <EditButton />
+            </Link>
+          </Flex.Center>
         </header>
         <main className='w-full h-fit'>
           {children}
         </main>
-        <Link href='/writepage' className={'fixed right-8 bottom-8 overflow-hidden rounded-2xl bg-blue-500 px-8 py-4 text-white font-bold hover:bg-slate-700 cursor-pointer'}>
-          {"글 작성"}
-        </Link>
       </body>
     </html>
   )
