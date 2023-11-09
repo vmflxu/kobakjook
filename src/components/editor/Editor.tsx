@@ -79,7 +79,7 @@ const Editor = ({
                     // delta.ops = newOps;
                     // editor.updateContents(delta);
                     editor.clipboard.dangerouslyPasteHTML(
-                        `<img src=${imageUrl} alt=${file.name}>`
+                        `<img src=${imageUrl} alt=${file.name} />`
                     )
                     editor?.setSelection(indexRange+1,0);
                 } catch (err:any) {
