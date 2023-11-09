@@ -53,16 +53,27 @@ const Editor = ({
         input.setAttribute('accept', 'image/*');
         input.click();
         input.addEventListener('change', async () => {
-            if(!!input.files){
+            if(!!input.files && !!quillRef.current){
                 try {
                     const file = input.files[0];
-                    input.setAttribute('alt',file.name);
                     const imageUrl = await postImage(file);
                     console.log('imageUrl in Editor:', imageUrl);
-                    const editor = quillRef.current?.getEditor();
-                    const range = editor?.getSelection();
+                    const editor = quillRef.current.getEditor();
+                    const range = editor.getSelection();
                     const indexRange = range?.index as number;
-                    editor?.insertEmbed(indexRange, 'image', imageUrl);
+                    const target = editor.insertEmbed(indexRange, 'image', imageUrl);
+                    const newOps = target.ops?.map(op => {
+                        if(op.insert && typeof op.insert === 'object' && op.insert.image) {
+                            const imageAtt = {
+                                ...op.attributes,
+                                alt: file.name,
+                            };
+                            return { ...op, attributes: imageAtt };
+                        }
+                        return op;
+                    })
+                    target.ops = newOps;
+                    editor.updateContents(target);
                     editor?.setSelection(indexRange+1, 0);
                 } catch (err:any) {
                     console.log(err.message);
