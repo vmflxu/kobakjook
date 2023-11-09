@@ -4798,6 +4798,15 @@ quill-delta@^3.6.2:
     extend "^3.0.2"
     fast-diff "1.1.2"
 
+quill-image-resize-alt-module@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/quill-image-resize-alt-module/-/quill-image-resize-alt-module-4.0.0.tgz#13597b43a48a88ecc514b27580dce55179a156fb"
+  integrity sha512-4DZ+EtKmLwByUJ55/HdiLHCqujXChyPB+vqRXzkMBtrxrDxOI9ye92nMcfrmjb3onvU2PCrus9RZsAPUWaUKRg==
+  dependencies:
+    lodash "^4.17.4"
+    quill "^1.2.2"
+    raw-loader "^0.5.1"
+
 quill-image-resize-module-ts@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/quill-image-resize-module-ts/-/quill-image-resize-module-ts-3.0.3.tgz#47e6d81214719b7a745c2d4e53cad2cef09ad4dc"

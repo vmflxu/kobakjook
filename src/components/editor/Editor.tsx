@@ -1,10 +1,10 @@
 'use client'
 import postImage from '@/lib/firebase/postImage';
 import store from '@/store/store';
-import { ImageResize } from 'quill-image-resize-module-ts';
 import React, { RefObject, useEffect, useMemo, useRef, useState } from 'react'
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import ImageResize from 'quill-image-resize-module-ts'
 
 Quill.register('modules/ImageResize', ImageResize);
 const toolbarOptions = [
@@ -62,19 +62,22 @@ const Editor = ({
                     const range = editor.getSelection();
                     const indexRange = range?.index as number;
                     editor.formatLine(indexRange,range?.length as number,'alt',file.name);
-                    const target = editor.insertEmbed(indexRange, 'image', imageUrl);
-                    const newOps = target.ops?.map(op => {
-                        if(op.insert && typeof op.insert === 'object' && op.insert.image) {
-                            const imageAtt = {
-                                ...op.attributes,
-                                alt: file.name,
-                            };
-                            return { ...op, attributes: imageAtt };
+                    const delta = editor.insertEmbed(indexRange, 'image', imageUrl);
+                    // editor.removeFormat(range?.index,range?.index+1);
+                    // editor.insertEmbed(indexRange, 'image', imageUrl);
+                    const newOps = delta.ops?.map(op =>{
+                        const imgAttributes = {
+                            ...op.attributes,
+                            alt: file.name,
+                        };
+
+                        return {
+                            ...op,
+                            attributes : imgAttributes,
                         }
-                        return op;
-                    })
-                    target.ops = newOps;
-                    editor.updateContents(target);
+                    });
+                    delta.ops = newOps;
+                    editor.updateContents(delta);
                     editor?.setSelection(indexRange+1, 0);
                 } catch (err:any) {
                     console.log(err.message);
@@ -97,6 +100,7 @@ const Editor = ({
             ImageResize: {
                 parchment: Quill.import('parchment'),
                 modules: ['Resize', 'DisplaySize'],
+                
             }
         }
     }, []);
