@@ -9,7 +9,7 @@ export type ArticleCommentsProps = {
 
 const ArticleComments = ({id}:{id:string}) => {
   return (
-    <Flex.VStack className='w-full h-fit px-16 xl:w-[1200px] xl:px-0'>
+    <Flex.VStack className='w-full h-fit px-8 xl:w-[1200px] xl:px-0'>
       <CommentInputSet id={id}/>
       <CommentList id={id}/>
     </Flex.VStack>
