@@ -1,6 +1,6 @@
 import React from 'react'
 
-const WritepageLayout = ({children}:{children:React.ReactDOM}) => {
+const WritepageLayout = ({children}:{children:React.ReactNode}) => {
   return (
     <>{children}</>
   )
