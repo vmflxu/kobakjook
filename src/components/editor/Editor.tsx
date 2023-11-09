@@ -1,10 +1,10 @@
 'use client'
 import postImage from '@/lib/firebase/postImage';
 import store from '@/store/store';
-import { ImageResize } from 'quill-image-resize-module-ts';
 import React, { RefObject, useEffect, useMemo, useRef, useState } from 'react'
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { ImageResize } from 'quill-image-resize-module-ts'
 
 Quill.register('modules/ImageResize', ImageResize);
 const toolbarOptions = [
@@ -53,20 +53,15 @@ const Editor = ({
         input.setAttribute('accept', 'image/*');
         input.click();
         input.addEventListener('change', async () => {
-            if(!!input.files){
+            if(!!input.files && !!quillRef.current){
                 try {
                     const file = input.files[0];
-                    input.setAttribute('alt',file.name);
                     const imageUrl = await postImage(file);
                     console.log('imageUrl in Editor:', imageUrl);
-                    const editor = quillRef.current?.getEditor();
-                    const range = editor?.getSelection();
+                    const editor = quillRef.current.getEditor();
+                    const range = editor.getSelection();
                     const indexRange = range?.index as number;
-<<<<<<< HEAD
-                    editor?.insertEmbed(indexRange, 'image', imageUrl);
-                    editor?.setSelection(indexRange+1, 0);
-=======
-                    // editor.formatLine(indexRange,range?.length as number,'alt',file.name);
+                    editor.formatLine(indexRange,range?.length as number,'alt',file.name);
                     // const delta = editor.insertEmbed(indexRange, 'image', imageUrl);
                     // editor.removeFormat(range?.index,range?.index+1);
                     // editor.insertEmbed(indexRange, 'image', imageUrl);
@@ -87,7 +82,6 @@ const Editor = ({
                         `<img src=${imageUrl} alt=${file.name} />`
                     )
                     editor?.setSelection(indexRange+1,0);
->>>>>>> parent of e2d17fd (Fix: 복구)
                 } catch (err:any) {
                     console.log(err.message);
                 }
@@ -109,6 +103,7 @@ const Editor = ({
             ImageResize: {
                 parchment: Quill.import('parchment'),
                 modules: ['Resize', 'DisplaySize'],
+                
             }
         }
     }, []);
