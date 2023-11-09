@@ -61,6 +61,7 @@ const Editor = ({
                     const editor = quillRef.current.getEditor();
                     const range = editor.getSelection();
                     const indexRange = range?.index as number;
+                    editor.formatLine(indexRange,range?.length as number,'alt',file.name);
                     const target = editor.insertEmbed(indexRange, 'image', imageUrl);
                     const newOps = target.ops?.map(op => {
                         if(op.insert && typeof op.insert === 'object' && op.insert.image) {
