@@ -6,7 +6,7 @@ const InputTagModule = () => {
     const [iptTag, setIptTag] = useState<string>("");
     const { setTags } = store.useCreatePost();
     const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if(e.key === "Enter"){
+        if (e.key === "Enter") {
             setTags(iptTag);
             setIptTag("");
         }
@@ -16,7 +16,7 @@ const InputTagModule = () => {
             value={iptTag}
             onChange={e => setIptTag(e.currentTarget.value)}
             onKeyDown={onKeyDownHandler}
-            className={'text-blue-900'}
+            className={'text-blue-900 px-2 py-1'}
         />
     )
 }

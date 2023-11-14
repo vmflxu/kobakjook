@@ -3,6 +3,7 @@ import store from '@/store/store'
 import React from 'react'
 import { PostSchema } from '../page';
 import { useRouter } from 'next/navigation';
+import { Flex } from '@/components/style/Flex';
 
 const UploadButton = ({ children }: { children: React.ReactNode }) => {
     const { title, path, content, tags } = store.useCreatePost();
@@ -13,21 +14,21 @@ const UploadButton = ({ children }: { children: React.ReactNode }) => {
 
     // router.basePath
     const uploadHandler = async () => {
-        const payload:PostSchema = {
+        const payload: PostSchema = {
             title,
             path,
             content,
             tags,
             writeAt: Date.now(),
             modified: false,
-            visit:0,
+            visit: 0,
         };
         try {
-            const res = await fetch(`${host}/api/post`,{
+            const res = await fetch(`${host}/api/post`, {
                 method: 'POST',
                 body: JSON.stringify(payload),
             });
-            router.push(`/posts/${path}`,{
+            router.push(`/posts/${path}`, {
                 scroll: true,
             });
         } catch (err) {
@@ -35,11 +36,13 @@ const UploadButton = ({ children }: { children: React.ReactNode }) => {
         }
     }
     return (
-        <button
-            onClick={uploadHandler}
-            className={'border-gray-600 border-2 py-2 px-4 rounded-full text-gray-600 font-bold hover:text-white hover:bg-gray-600 '}>
-            {children}
-        </button>
+        <Flex.HCenter className='w-full'>
+            <button
+                onClick={uploadHandler}
+                className={'w-fit border-gray-600 border-2 py-2 px-8 rounded-full text-gray-600 font-bold hover:text-white hover:bg-gray-600 '}>
+                {children}
+            </button>
+        </Flex.HCenter>
     )
 }
 
