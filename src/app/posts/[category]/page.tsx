@@ -17,9 +17,9 @@ const page = async ({ params, }: { params: PageParams, }) => {
     const data = (await res.json()).data as ResPostSchema[];
 
     return (
-        <Flex.HCenter className={'w-[1200px] h-fit flex-wrap gap-8 text-black'}>
+        <Flex.HCenter className={'w-full lg:w-[1200px] h-fit flex-wrap gap-8 text-black'}>
             <SearchBox />
-            <div className='grid grid-flow-row grid-cols-4 gap-10 w-full h-fit'>
+            <div className='grid grid-flow-dense grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 w-full h-fit'>
                 {/* <Flex.HCenter className='w-full flex-wrap gap-10'> */}
                 {(!!data && data.length > 0) && data.map((item, idx) => {
                     return <PostCard

@@ -20,6 +20,7 @@ export type PostSchema = {
 export type ResPostSchema = {
     _id: string;
 } & PostSchema;
+
 const page = async () => {
 
     const res = await fetch(`${getHost()}/api/menu`, {
@@ -31,17 +32,14 @@ const page = async () => {
     const data: MenuBody = await res.json();
 
     return (
-        // <form action={actionHandler} className='mt-16'>
         <Flex.VCenter className={'gap-4 mx-auto px-16 w-[70%] my-16 justify-center'}>
             <FolderDropDown data={data} />
             <PostTitle label='제목' />
             <PostContent label='내용' />
             <PostHashTag />
-            {/* <StateTester /> */}
             <UploadButton>업로드</UploadButton>
         </Flex.VCenter>
-        // </form>
-    )
+    );
 }
 
 export default page

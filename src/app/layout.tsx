@@ -33,7 +33,7 @@ export default async function RootLayout({
         >
           <Introduce />
           <HomeNav />
-          <Flex.Center className='w-full h-fit absolute bottom-16'>
+          <Flex.Center className='w-full h-fit absolute bottom-16 hover:text-blue-500'>
             <Link href='/writepage'>
               <EditButton />
             </Link>
