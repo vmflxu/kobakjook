@@ -20,6 +20,7 @@ export type PostSchema = {
 export type ResPostSchema = {
     _id: string;
 } & PostSchema;
+
 const page = async () => {
 
     const res = await fetch(`${getHost()}/api/menu`, {
@@ -30,39 +31,15 @@ const page = async () => {
     });
     const data: MenuBody = await res.json();
 
-    const actionHandler = async (formdata: FormData) => {
-        "use server"
-
-        const payload:PostSchema = {
-            title: formdata.get('title') as string,
-            content: formdata.get('content') as string,
-            path: 'react',
-            writeAt: Date.now(),
-            tags:[],
-            modified: false,
-            visit:0,
-        }
-        try {
-            await fetch(`${getHost()}/api/post`,{
-                method: 'POST',
-                body: JSON.stringify(payload),
-            });
-        } catch (err) {
-            console.log('Post Error:',err)
-        }
-    }
     return (
-        // <form action={actionHandler} className='mt-16'>
-            <Flex.VCenter className={'gap-4 mx-auto px-16 w-[70%] mt-16'}>
-                <FolderDropDown data={data} />
-                <PostTitle label='제목' />
-                <PostContent label='내용' />
-                <PostHashTag />
-                {/* <StateTester /> */}
-                <UploadButton>업로드</UploadButton>
-            </Flex.VCenter>
-        // </form>
-    )
+        <Flex.VCenter className={'gap-4 mx-auto px-16 w-[70%] my-16 justify-center'}>
+            <FolderDropDown data={data} />
+            <PostTitle label='제목' />
+            <PostContent label='내용' />
+            <PostHashTag />
+            <UploadButton>업로드</UploadButton>
+        </Flex.VCenter>
+    );
 }
 
 export default page

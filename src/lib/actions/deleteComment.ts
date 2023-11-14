@@ -5,7 +5,7 @@ import { connectDB } from "../mongo";
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 
-const deleteComment = async (formData:FormData) => {
+const deleteComment = async (formData: FormData) => {
     const id = formData.get('id');
     const listId = formData.get('listId');
     // 통신 구현
