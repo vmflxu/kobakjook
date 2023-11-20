@@ -1,8 +1,10 @@
 import React from 'react'
 
-const SearchResultArea = () => {
+const SearchResultArea = ({ className }: { className?: string }) => {
   return (
-    <div>SearchResultArea</div>
+    <div className={className ?? 'w-full'}>
+      SearchResultArea
+    </div>
   )
 }
 

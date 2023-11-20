@@ -1,15 +1,16 @@
-'use client'
 import { Flex } from '@/components/style/Flex'
-import React from 'react'
-import SearchConditionArea from './SearchConditionArea'
-import SearchResultArea from './SearchResultArea'
+import React, { useState } from 'react'
+import SearchModule from './SearchModule';
+import { ResPostSchema } from '@/app/writepage/page';
 
-const SearchBox = () => {
+const SearchBox = ({data}:{data:ResPostSchema[]}) => {
   return (
-    <Flex.VCenter className={'w-full h-fit'}>
-        <SearchConditionArea />
-        <SearchResultArea />
-    </Flex.VCenter>
+    <Flex.Center className={'w-full h-fit py-[30px] gap-8'}>
+      <SearchModule
+        data={data}
+        className='w-fit group bg-white rounded-[21px] overflow-hidden items-baseline border-[1px] border-slate-500'
+      />
+    </Flex.Center>
   )
 }
 
