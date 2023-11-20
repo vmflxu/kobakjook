@@ -9,10 +9,11 @@ export type CommentsInform = {
 }
 const LatestComments = () => {
     const router = useRouter();
+
     const [comments, setComments] = useState<CommentsInform[]>();
     const path = usePathname().split('/')[2];
     const fet = async () => {
-        const res = await (await fetch(`http://localhost:3000/api/comment/latest?path=${path}`)).json();
+        const res = await (await fetch(`/api/comment/latest?path=${path}`)).json();
         setComments(res.data as CommentsInform[]);
     }
 
