@@ -14,7 +14,6 @@ export const GET = async (req: NextRequest) => {
         !!commentRes && console.log(`get comments in success`);
 
         const postRes = await Post.find();
-        // const data = commentRes;
         let result: any = [];
         postRes
             .filter(item => item.path === path)
@@ -22,42 +21,17 @@ export const GET = async (req: NextRequest) => {
                 commentRes
                     .filter(el => el.targetId.toString() === post.id.toString())
                     .forEach(d => result.push(d));
-                // return {
-                //     postId: post.id,
-                //     cmt: commentRes[0].targetId.toString(),
-                // }
-                // if (idx === 0) {
-                //     commentRes.forEach(cm => console.log('id', String(cm.targetId)));
-                // }
-                // let tt = [];
-                // commentRes.forEach(c => {
-                //     tt.push(c.targetId);
-                // });
-                // // const temp = t.find(cm => cm === post.id) ?? false;
-                // return tt;
-                // if (temp) {
-                //     return 'yy';
-                //     // return {
-                //     //     targetId: temp.targetId,
-                //     // };
-                // } else {
-                //     return 'nn';
-                // }
             });
-        // console.log('r :', r);
-        // const data = await Post.find();
-        // const data = postRes;
-        const data = result;
-        // const data = postRes.map(item => {
-        //     if(!!commentRes.find(c => c.targetId === item.id)){
-        //         return {
-        //             targetId: item.id,
-        //             comment: c.comment,
-        //         }
-        //     }
-        // });
-
-        // const dataArr = commentRes.filter(item => !!postRes.find(post => post._id === item.targetId));
+        result.sort((a:any,b:any)=> b.writeAt-a.writeAt);
+        const data = result.map((item:any) => {
+            const dateInform = new Date(item.writeAt);
+            const writeAt = `${dateInform.getFullYear()}.${dateInform.getMonth()}.${dateInform.getDate()}`
+            return {
+                targetId: item.targetId,
+                comment: item.comment,
+                writeAt,
+            }
+        });
 
         return NextResponse.json({
             data,

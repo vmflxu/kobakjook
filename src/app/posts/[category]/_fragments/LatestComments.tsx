@@ -1,25 +1,55 @@
 'use client'
 import { Flex } from '@/components/style/Flex'
-import { getHost } from '@/lib/getHost'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import React, { useEffect } from 'react'
-
+import { usePathname, useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
+export type CommentsInform = {
+    targetId: string,
+    comment: string,
+    writeAt: string,
+}
 const LatestComments = () => {
+    const router = useRouter();
+    const [comments, setComments] = useState<CommentsInform[]>();
     const path = usePathname().split('/')[2];
     const fet = async () => {
         const res = await (await fetch(`http://localhost:3000/api/comment/latest?path=${path}`)).json();
-        // res.data.forEach((item: any) => {
-        //     console.log(`${item.cmt} === ${item.postId}`, item.cmt === item.postId);
-        // })
-        console.log(res);
+        setComments(res.data as CommentsInform[]);
+    }
+
+    const commentClickHandler = (text: string) => {
+        router.push(text);
     }
     useEffect(() => {
-        console.log('cli path:', path);
         fet();
-    }, [])
+    }, []);
+
     return (
-        <Flex.Center className='w-full'>
-            <Flex.HStack className='w-full font-bold'>최근 댓글</Flex.HStack>
+        <Flex.Center className='w-full gap-4'>
+            <Flex.HStack className='w-full font-bold'>
+                {`${path.charAt(0).toUpperCase() + path.slice(1)} 카테고리의 최근 댓글`}
+            </Flex.HStack>
+            <Flex.VStack className='w-full px-2 lg:w-4/5'>
+                {
+                    !!comments
+                        ? comments.length > 0
+                            ? <div>
+                                {
+                                    comments.map((item, idx) => {
+                                        if (idx > 4) return;
+                                        return <Flex.HBetween
+                                            className='cursor-pointer hover:font-semibold hover:text-blue-500 group'
+                                            onClick={e => commentClickHandler(`/article/${item.targetId}`)}
+                                            key={item.comment + String(idx)}>
+                                            <span>{item.comment}</span>
+                                            <span className='text-sm text-gray-500 group-hover:text-blue-500'>{item.writeAt}</span>
+                                        </Flex.HBetween>
+                                    })
+                                }
+                            </div>
+                            : <div>최근 댓글이 없습니다.</div>
+                        : <div>댓글을 가져오는 중입니다...잠시만 기다려주세요</div>
+                }
+            </Flex.VStack>
         </Flex.Center>
     )
 }

@@ -18,7 +18,7 @@ const page = async ({ params, }: { params: PageParams, }) => {
     const data = (await res.json()).data as ResPostSchema[];
 
     return (
-        <Flex.HCenter className={'w-full lg:w-[1200px] h-fit flex-wrap gap-8 text-black'}>
+        <Flex.HCenter className={'w-full lg:w-[1200px] h-fit flex-wrap gap-8 text-black mb-24'}>
             <SearchBox />
             <div className='w-full h-[1px] bg-gray-300' />
             <LatestComments />
