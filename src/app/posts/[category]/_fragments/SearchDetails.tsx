@@ -1,13 +1,12 @@
 import { Flex } from '@/components/style/Flex'
 import store from '@/store/store'
-import React from 'react'
+import React, { useEffect } from 'react'
 import FilterList from './FilterList';
 import SearchHistory from './SearchHistory';
 import { RiArrowUpDoubleLine } from "react-icons/ri";
 
 const SearchDetails = () => {
     const { setSearchState } = store.useArticleSearch();
-
     return (
         <Flex.VStack className='w-full h-fit mt-1 overflow-hidden'>
             <Flex.HBetween className='w-full pb-2'>
