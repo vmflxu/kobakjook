@@ -12,8 +12,10 @@ const SearchModule = ({ className }: { className?: string }) => {
   const { isTurnOn } = store.useArticleSearch();
   const onSubmitHandler = (formData: FormData) => {
     const text = formData.get('search-word') as string;
-    const prev = JSON.parse(localStorage.getItem('s_h') as string) as string[];
+    const prev = localStorage.getItem('s_h') ? JSON.parse(localStorage.getItem('s_h') as string) : [];
+
     prev.push(text);
+    console.log(prev);
     localStorage.setItem('s_h', JSON.stringify(prev));
   }
   return (

@@ -1,16 +1,21 @@
 'use client'
 
 import { Flex } from '@/components/style/Flex'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { LuDelete } from "react-icons/lu";
 
 const SearchHistory = () => {
-    const history = JSON.parse(localStorage.getItem('s_h') as string);
-    const onClickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        const text = e.currentTarget.innerText;
-        const result = history.filter((item: string) => item !== text);
+    const [history, setHistory] = useState<string[]>(JSON.parse(localStorage.getItem('s_h') as string));
+    // const history = JSON.parse(localStorage.getItem('s_h') as string);
+
+    const onClickHandler = (word: string) => {
+        const result = history.filter((item: string) => item !== word);
+        setHistory(result);
         localStorage.setItem('s_h', JSON.stringify(result));
     }
+    // useEffect(()=>{
+
+    // },[history]);
     return (
         <Flex.VStack className='flex flex-1 text-sm text-gray-600 px-4'>
             {
@@ -21,7 +26,7 @@ const SearchHistory = () => {
                     >
                         <span>{item}</span>
                         <button
-                            onClick={onClickHandler}
+                            onClick={e => onClickHandler(item)}
                             className='hover:text-blue-500'>
                             <LuDelete size={'16px'} />
                         </button>
