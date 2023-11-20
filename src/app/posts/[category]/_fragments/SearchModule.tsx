@@ -1,11 +1,10 @@
 'use client'
 import DropDown from '@/components/common/DropDown'
 import { Flex } from '@/components/style/Flex'
-import React, { useState } from 'react'
+import React from 'react'
 import SearchInput from './SearchInput';
 import SearchDetails from './SearchDetails';
 import SearchButton from './SearchButton';
-import { SearchBoxState, SearchFilter } from '@/store/useArticleSearch';
 import store from '@/store/store';
 
 const SearchModule = ({ className }: { className?: string }) => {
@@ -13,9 +12,7 @@ const SearchModule = ({ className }: { className?: string }) => {
   const onSubmitHandler = (formData: FormData) => {
     const text = formData.get('search-word') as string;
     const prev = localStorage.getItem('s_h') ? JSON.parse(localStorage.getItem('s_h') as string) : [];
-
     prev.push(text);
-    console.log(prev);
     localStorage.setItem('s_h', JSON.stringify(prev));
   }
   return (
