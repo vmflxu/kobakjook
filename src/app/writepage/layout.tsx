@@ -1,8 +1,8 @@
 import React from 'react'
 
-const WritepageLayout = ({children}:{children:React.ReactNode}) => {
+const WritepageLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>{children}</>
+    <div className='w-full h-full bg-color-base'>{children}</div>
   )
 }
 

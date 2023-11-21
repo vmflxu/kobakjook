@@ -7,19 +7,19 @@ const CommentArea = () => {
     const cmtRef = useRef<HTMLTextAreaElement>(null);
     const { pending } = useFormStatus();
 
-    useEffect(()=>{
-        if(!pending){
-            if(!!cmtRef.current){
+    useEffect(() => {
+        if (!pending) {
+            if (!!cmtRef.current) {
                 cmtRef.current.value = '';
             }
         }
-    },[pending]);
-    
+    }, [pending]);
+
     return (
         <textarea
             ref={cmtRef}
             placeholder='댓글을 입력해주세요.'
-            className='w-full flex-1 h-full border pb-0 xl:pb-4 resize-none'
+            className='w-full px-2 py-2 flex-1 h-full border pb-0 xl:pb-4 resize-none'
             name='comment'
             maxLength={300}
             wrap='hard'

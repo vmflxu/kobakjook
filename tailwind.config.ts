@@ -17,6 +17,12 @@ const config: Config = {
       },
       fontFamily: {
         Pretendard: ["Pretendard Variable"],
+      },
+      colors: {
+        'color-base': '#ECE3CE',
+        'color-week': '#739072',
+        'color-normal': '#4F6F52',
+        'color-strong': '#3A4D39'
       }
     },
   },

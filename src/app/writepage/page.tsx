@@ -32,12 +32,12 @@ const page = async () => {
     const data: MenuBody = await res.json();
 
     return (
-        <Flex.VCenter className={'gap-4 mx-auto px-16 w-[70%] my-16 justify-center'}>
+        <Flex.VCenter className={'gap-4 mx-auto px-16 w-[70%] py-16 justify-center bg-color-base'}>
             <FolderDropDown data={data} />
             <PostTitle label='제목' />
             <PostContent label='내용' />
             <PostHashTag />
-            <UploadButton>업로드</UploadButton>
+            <UploadButton>Upload</UploadButton>
         </Flex.VCenter>
     );
 }

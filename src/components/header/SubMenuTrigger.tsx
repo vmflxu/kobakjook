@@ -8,11 +8,11 @@ import React, { useState, useEffect } from 'react'
 
 const SubMenuTrigger = ({ data, children }: { data: RouteInform, children: React.ReactNode }) => {
     const pathName = usePathname();
-    const [color, setColor] = useState<string>(textColor.normal);
+    const [color, setColor] = useState<string>('text-color-normal');
 
     const {
         setPath,
-            toggleIsOpenSubMenu
+        toggleIsOpenSubMenu
     } = store.useNavMenuStore();
 
     const onClickHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -25,9 +25,9 @@ const SubMenuTrigger = ({ data, children }: { data: RouteInform, children: React
         setPath(parsedDataPath[0]);
 
         if (parsedPath[0] === parsedDataPath) {
-            setColor(textColor.selected);
+            setColor('text-color-base');
         } else {
-            setColor(textColor.white);
+            setColor('text-color-strong');
         }
     }, [pathName]);
 

@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 import HomeNav from '@/components/header/HomeNav';
 import Link from 'next/link';
 import Introduce from '@/components/header/Introduce';
-import HeaderBg from '#/profile/bg_header.jpg';
 import { Flex } from '@/components/style/Flex';
 import EditButton from './writepage/_fragments/EditButton';
 
@@ -17,23 +16,14 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const src = HeaderBg.src;
 
   return (
     <html lang="en">
       <body className='flex flex-row gap-0 font-Pretendard font-normal text-lg text-white'>
-        <header
-          className={`hidden flex-col w-96 h-screen items-center gap-8 flex-none top-0 sticky 2xl:flex`}
-          style={{
-            backgroundImage: `url('${src}')`,
-            backgroundRepeat: 'no-repeat',
-            objectFit: 'cover',
-            backgroundPositionX: '50%'
-          }}
-        >
+        <header className={`hidden flex-col w-96 h-screen items-center gap-8 flex-none top-0 sticky 2xl:flex bg-color-week text-white`}>
           <Introduce />
           <HomeNav />
-          <Flex.Center className='w-full h-fit absolute bottom-16 hover:text-blue-500'>
+          <Flex.Center className='w-full h-fit absolute bottom-16 text-color-strong hover:text-color-base'>
             <Link href='/writepage'>
               <EditButton />
             </Link>

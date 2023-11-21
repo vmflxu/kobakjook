@@ -11,13 +11,13 @@ const MenuTitle = ({ data }: { data: RouteInform }) => {
                 data.title !== "Posts"
                     ? (
                         <Link href={data.path}>
-                            <span className={'text-inherit hover:text-blue-500'}>
+                            <span className={'text-inherit hover:text-color-base'}>
                                 {data.title}
                             </span>
                         </Link>
                     )
                     : (
-                        <span className={'text-inherit hover:text-blue-500'}>
+                        <span className={'text-inherit hover:text-color-base'}>
                             {data.title}
                         </span>
                     )
