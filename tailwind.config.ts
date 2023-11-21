@@ -22,7 +22,8 @@ const config: Config = {
         'color-base': '#ECE3CE',
         'color-week': '#739072',
         'color-normal': '#4F6F52',
-        'color-strong': '#3A4D39'
+        'color-strong': '#3A4D39',
+        'color-more-strong': '#1D3224',
       }
     },
   },

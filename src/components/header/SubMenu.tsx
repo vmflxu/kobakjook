@@ -11,7 +11,7 @@ const SubMenu = ({ menu }: { menu: RouteInform }) => {
     useEffect(() => {
         const parsedPath = pathName.split('/').slice(1)[1];
         const parsedDataPath = menu.path.replace('/', '');
-        const subMenuStyle = JSON.stringify(parsedPath) === JSON.stringify(parsedDataPath) ? 'text-color-base' : 'text-color-strong';
+        const subMenuStyle = JSON.stringify(parsedPath) === JSON.stringify(parsedDataPath) ? 'text-color-base' : 'text-color-week';
         const mergedStyle = twMerge('text-normal hover:text-color-base', subMenuStyle);
         setStyle(mergedStyle);
     }, [pathName]);
