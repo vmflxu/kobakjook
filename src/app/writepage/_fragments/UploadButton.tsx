@@ -39,7 +39,7 @@ const UploadButton = ({ children }: { children: React.ReactNode }) => {
         <Flex.HCenter className='w-full'>
             <button
                 onClick={uploadHandler}
-                className={'w-fit border-gray-600 border-2 py-2 px-8 rounded-full text-gray-600 font-bold hover:text-white hover:bg-gray-600 '}>
+                className={'w-fit border-color-strong border-2 py-2 px-8 rounded-full text-gray-600 font-bold hover:text-white hover:bg-color-strong'}>
                 {children}
             </button>
         </Flex.HCenter>

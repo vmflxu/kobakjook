@@ -1,9 +1,9 @@
 import { Flex } from '@/components/style/Flex'
 import store from '@/store/store'
-import React, { useEffect } from 'react'
+import React from 'react'
 import FilterList from './FilterList';
 import SearchHistory from './SearchHistory';
-import { RiArrowUpDoubleLine } from "react-icons/ri";
+import { SlArrowUp } from "react-icons/sl";
 
 const SearchDetails = () => {
     const { setSearchState } = store.useArticleSearch();
@@ -18,8 +18,9 @@ const SearchDetails = () => {
             <Flex.Center className='w-full h-fit hover:bg-gray-100 group/close'>
                 <button
                     className='flex flex-row justify-center text-sm w-full h-fit my-1 group-hover/close:text-blue-500'
-                    onClick={e => setSearchState({ isTurnOn: false })}>
-                    <RiArrowUpDoubleLine size={24} />
+                    onClick={e => setSearchState({ isTurnOn: false })}
+                >
+                    <SlArrowUp size={12} />
                 </button>
             </Flex.Center>
         </Flex.VStack>

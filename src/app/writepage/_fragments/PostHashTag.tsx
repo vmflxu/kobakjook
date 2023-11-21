@@ -5,7 +5,7 @@ import InputTagModule from './InputTagModule'
 
 const PostHashTag = () => {
     return (
-        <Flex.VStack className={'bg-gray-600 p-4 text-white w-full gap-1'}>
+        <Flex.VStack className={'bg-color-strong p-4 text-white w-full gap-1'}>
             <TagListViewer />
             <InputTagModule />
         </Flex.VStack>

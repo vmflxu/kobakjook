@@ -12,7 +12,7 @@ const page = async ({ params, }: { params: { id: string }, }) => {
     const data = (await result).data as ResPostSchema;
 
     return (
-        <Flex.VStack className='w-full min-h-screen h-fit pb-24 items-center text-black'>
+        <Flex.VStack className='w-full min-h-screen h-fit pb-24 items-center text-color-strong'>
             <ArticleTitle title={data.title} date={data.writeAt} />
             <ArticleContent content={data.content} tags={data.tags} />
             <ArticleComments id={JSON.parse(JSON.stringify(data._id))} />

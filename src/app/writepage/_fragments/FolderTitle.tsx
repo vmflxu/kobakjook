@@ -7,10 +7,10 @@ const FolderTitle = ({ onClick, selected }: { onClick: () => void, selected: str
     return (
         <Flex.HBetween
             onClick={onClick}
-            className={'bg-gray-600 p-4 text-white w-full cursor-pointer'}
+            className={'bg-color-strong p-4 text-white w-full cursor-pointer'}
         >
             <div className={'h-fit'}>폴더</div>
-            <div className={'font-extralight'}>{selected ?? ''}</div>
+            <div className={'font-semibold'}>{selected ?? ''}</div>
         </Flex.HBetween>
     )
 }

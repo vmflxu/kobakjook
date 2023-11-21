@@ -47,8 +47,8 @@ const LatestComments = () => {
                                     })
                                 }
                             </div>
-                            : <div>최근 댓글이 없습니다.</div>
-                        : <div>댓글을 가져오는 중입니다...잠시만 기다려주세요</div>
+                            : <div className='w-full text-center'>이 카테고리에 댓글이 없습니다. 댓글을 달아주세요.</div>
+                        : <div className='w-full text-center'>댓글을 가져오고 있어요 잠시만 기다려주세요!</div>
                 }
             </Flex.VStack>
         </Flex.Center>

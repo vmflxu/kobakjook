@@ -25,12 +25,12 @@ const PostCard = ({ data }: PostCardProps) => {
             onClick={changeRouteHandler}
             onMouseEnter={prefetchHandler}
         >
-            <Flex.Center className={'hidden sm:flex w-1/2 h-1/2 sm:w-[250px] sm:h-[250px] relative border border-gray-700 text-white z-10 bg-slate-700 p-4 gap-6 before:w-[230px] before:h-[230px] before:bg-white before:absolute after:w-[210px] after:h-[210px] after:bg-slate-500 after:absolute'}>
+            <Flex.Center className={'hidden sm:flex w-1/2 h-1/2 sm:w-[250px] sm:h-[250px] relative border border-gray-700 text-white z-10 bg-color-strong p-4 gap-6 before:w-[230px] before:h-[230px] before:bg-color-base before:absolute after:w-[210px] after:h-[210px] after:bg-color-week after:absolute'}>
                 <div className={`w-[180px] line-clamp-2 font-semibold text-white z-20`}>{data.title}</div>
             </Flex.Center>
-            <Flex.VStack className={'w-full sm:w-[200px] text-xs gap-2'}>
+            <Flex.VStack className={'w-full sm:w-[250px] text-xs gap-2'}>
                 <div className='sm:hidden font-bold text-lg'>{data.title}</div>
-                <div className='line-clamp-3'>{content}</div>
+                <div className='w-full line-clamp-3 whitespace-pre-line'>{content}</div>
             </Flex.VStack>
         </Flex.HStack>
     )
