@@ -12,7 +12,7 @@ const CommentDetail = ({
 }) => {
 
     const time = new Date(item.writeAt);
-    const dateString = `${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate() < 10 ? 0 : null}${time.getDate()}`;
+    const dateString = `${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate() < 10 ? 0 : ''}${time.getDate()}`;
     const actionHandler = async (formData: FormData) => {
         'use server'
         formData.append('id', item._id);
