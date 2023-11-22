@@ -79,7 +79,7 @@ const page = ({ params }: { params: PageParams }) => {
                         <div className="text-2xl font-bold">E-mail : vmflxu@gmail.com</div>
                         <div className="text-2xl font-bold">
                             Github :
-                            <Link href={'https://github.com/vmflxu/kobakjook'}>https://github.com/vmflxu/kobakjook</Link>
+                            <Link href={'https://github.com/vmflxu/kobakjook'}> https://github.com/vmflxu/kobakjook</Link>
                             {'(블로그의 레포지토리입니다.)'}
                         </div>
                         <div className="text-2xl font-bold mt-8">현재 프리랜서로서, 외주 문의 가능합니다 편하게 연락주세요!</div>
